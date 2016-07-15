@@ -136,7 +136,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 //case 2:
                 //    return WebViewFragment.newInstance();
                 default:
-                    return RecyclerViewFragment.newInstance();
+                    return new FragmentBooks();
             }
         }
 
