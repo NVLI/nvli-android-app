@@ -1,5 +1,6 @@
 package com.gov.iitnvli.home;
 
+import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -52,8 +53,8 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             View bigListView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_big, parent, false);
             viewHolder = new BigListItemHolder(bigListView);
         } else if (viewType == TYPE_CELL) {
-            View samllListView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_small, parent, false);
-            viewHolder = new SmallListItemHolder(samllListView);
+            View smallListView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_small, parent, false);
+            viewHolder = new SmallListItemHolder(smallListView);
         }
 
         return viewHolder;
@@ -63,6 +64,11 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof BigListItemHolder) {
         } else if (holder instanceof SmallListItemHolder) {
+           ListItemModel listItemModel= itemList.get(position);
+            ((SmallListItemHolder) holder).title.setText(listItemModel.getTitle());
+            ((SmallListItemHolder) holder).description.setText(listItemModel.getDescription());
+            Picasso.with(activity).load(listItemModel.getImage()).into(((SmallListItemHolder) holder).image);
+            ((SmallListItemHolder) holder).category.setText(listItemModel.getSubcategory());
         }
     }
 
@@ -76,9 +82,17 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public class SmallListItemHolder extends RecyclerView.ViewHolder {
 
+        public TextView title;
+        public TextView description;
+        public ImageView image;
+        public TextView category;
+
         public SmallListItemHolder(View itemView) {
             super(itemView);
-
+            title = (TextView) itemView.findViewById(R.id.title);
+            description = (TextView) itemView.findViewById(R.id.description);
+            image = (ImageView) itemView.findViewById(R.id.image);
+            category = (TextView) itemView.findViewById(R.id.category);
         }
     }
 }
