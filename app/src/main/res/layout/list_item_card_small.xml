@@ -42,6 +42,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:text="Title"
                     android:textColor="@color/titleColor"
                     android:textSize="@dimen/headerLevelFont" />
@@ -52,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:lines="3"
+                    android:maxLines="3"
                     android:text="Description"
                     android:ellipsize="end"
                     android:textColor="@color/textColor"
