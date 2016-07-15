@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">IIT-NVLI</string>
+    <string name="books">Books</string>
+    <string name="thesis">Journal and Thesis</string>
+    <string name="museum">Museum</string>
+    <string name="archieves">Govt Archives</string>
+    <string name="audiovideo">Audio/Video</string>
+    <string name="manuscripts">Manuscripts</string>
+    <string name="newspaper">Newspaper archives</string>
+    <string name="maps">Maps</string>
+
 </resources>

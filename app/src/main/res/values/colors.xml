@@ -4,4 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
+
+    <color name="books">#c0392b</color>
+    <color name="archieve">#34495e</color>
+    <color name="audioVideo">#9b59b6</color>
+    <color name="manuscript">#3498db</color>
+    <color name="map">#1abc9c</color>
+    <color name="musem">#f1c40f</color>
+    <color name="newspaper">#e74c3c</color>
+    <color name="thesis">#e67e22</color>
+
 </resources>
