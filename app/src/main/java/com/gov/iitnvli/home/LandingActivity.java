@@ -1,7 +1,9 @@
-package com.gov.iitnvli;
+package com.gov.iitnvli.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.gov.iitnvli.R;
 
 public class LandingActivity extends AppCompatActivity {
 
