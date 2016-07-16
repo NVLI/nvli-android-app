@@ -24,13 +24,14 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private List<ListItemModel> itemList;
     private LandingActivity activity;
+    private int fragType;
     private int TYPE_HEADER = 0;
     private int TYPE_CELL = 1;
 
-    public ListRecyclerViewAdapter(List<ListItemModel> itemList, LandingActivity activity) {
+    public ListRecyclerViewAdapter(List<ListItemModel> itemList, LandingActivity activity, int fragType) {
         this.itemList = itemList;
         this.activity = activity;
-
+        this.fragType = fragType;
     }
 
     @Override
@@ -95,7 +96,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openBookDetail(particularItem);
+                    openScr(particularItem);
                 }
             });
         }
@@ -118,13 +119,26 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openBookDetail(particularItem);
+                    openScr(particularItem);
                 }
             });
         }
     }
 
+    private void openScr(ListItemModel particularItem) {
+        if (fragType == ActivityConstant.BOOK_DETAIL_FRAGMENT){
+            openBookDetail(particularItem);
+        }
+        else  if (fragType == ActivityConstant.THESISK_DETAIL_FRAGMENT){
+            openThesisDetail(particularItem);
+        }
+    }
+
     private void openBookDetail(ListItemModel particularItem) {
         activity.navigateTo(ActivityConstant.BOOK_DETAIL_FRAGMENT,particularItem, true, null);
+    }
+
+    private void openThesisDetail(ListItemModel particularItem) {
+        activity.navigateTo(ActivityConstant.THESISK_DETAIL_FRAGMENT,particularItem, true, null);
     }
 }

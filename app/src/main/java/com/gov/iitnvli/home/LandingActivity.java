@@ -17,12 +17,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.global.ActivityConstant;
+import com.gov.iitnvli.home.books.FragmentBookDetail;
+import com.gov.iitnvli.home.books.FragmentBooks;
+import com.gov.iitnvli.home.thesis.FragmentThesis;
+import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
 import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
 
 
@@ -144,14 +147,24 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         @Override
         public Fragment getItem(int position) {
             switch (position % pageCount) {
-                //case 0:
-                //    return RecyclerViewFragment.newInstance();
-                //case 1:
-                //    return RecyclerViewFragment.newInstance();
-                //case 2:
-                //    return WebViewFragment.newInstance();
-                default:
+                case 0:
                     return new FragmentBooks();
+                case 1:
+                    return new FragmentThesis();
+                case 2:
+                    return new FragmentBooks();
+                case 3:
+                    return new FragmentThesis();
+                case 4:
+                    return new FragmentBooks();
+                case 5:
+                    return new FragmentThesis();
+                case 6:
+                    return new FragmentBooks();
+                case 7:
+                    return new FragmentThesis();
+                default:
+                    return null;
             }
         }
 
@@ -191,6 +204,12 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 FragmentBookDetail fragmentBookDetail = new FragmentBookDetail();
                 fragmentBookDetail.setBookDetailData((ListItemModel) obj);
                 changeFragment(fragmentBookDetail, state);
+            }
+            break;
+            case ActivityConstant.THESISK_DETAIL_FRAGMENT: {
+                FragmentThesisDetail fragmentThesisDetail = new FragmentThesisDetail();
+                fragmentThesisDetail.setThesisDetailData((ListItemModel) obj);
+                changeFragment(fragmentThesisDetail, state);
             }
             break;
             default:

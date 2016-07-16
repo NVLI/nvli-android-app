@@ -1,4 +1,4 @@
-package com.gov.iitnvli.home;
+package com.gov.iitnvli.home.books;
 
 
 import android.graphics.Typeface;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.home.LandingActivity;
 import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +27,7 @@ public class FragmentBookDetail extends Fragment {
     private TextView bookEdition;
     private TextView bookYear;
     private TextView bookDescription;
+    private TextView bookAuthor;
     private String imgUrl = "http://media.wiley.com/product_data/coverImage300/47/04704754/0470475447.jpg";
     private ListItemModel listItemModel;
 
@@ -56,11 +58,13 @@ public class FragmentBookDetail extends Fragment {
         bookEdition = (TextView) parentView.findViewById(R.id.bookEdition);
         bookYear = (TextView) parentView.findViewById(R.id.bookYear);
         bookDescription = (TextView) parentView.findViewById(R.id.bookDescription);
+        bookAuthor = (TextView) parentView.findViewById(R.id.bookAuthor);
 
         bookTitle.setText(listItemModel.getTitle());
         bookEdition.setText(listItemModel.getEdition());
         bookYear.setText(listItemModel.getYear());
         bookDescription.setText(listItemModel.getDescription());
+        bookAuthor.setText(listItemModel.getAuthor());
 
         return parentView;
     }

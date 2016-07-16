@@ -12,6 +12,15 @@ public class ListItemModel {
     private String headerImage;
     private String edition;
     private String year;
+    private String author;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getYear() {
         return year;

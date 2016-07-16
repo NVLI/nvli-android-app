@@ -1,4 +1,4 @@
-package com.gov.iitnvli.home;
+package com.gov.iitnvli.home.books;
 
 
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.global.ActivityConstant;
+import com.gov.iitnvli.home.LandingActivity;
+import com.gov.iitnvli.home.ListRecyclerViewAdapter;
 import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
 
 import java.util.ArrayList;
@@ -47,7 +50,7 @@ public class FragmentBooks extends Fragment {
         layoutManager = new LinearLayoutManager(activity);
         booksList.setLayoutManager(layoutManager);
         booksList.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        adapter = new ListRecyclerViewAdapter(getTestData(), activity);
+        adapter = new ListRecyclerViewAdapter(getTestData(), activity, ActivityConstant.BOOK_DETAIL_FRAGMENT);
         booksList.setAdapter(adapter);
 
         return parentView;
@@ -64,6 +67,7 @@ public class FragmentBooks extends Fragment {
             listItemModel.setSubcategory("Physics");
             listItemModel.setEdition("8th Edition");
             listItemModel.setYear("2012");
+            listItemModel.setAuthor("John D. Cutnell, Kenneth W. Johnson");
             listItem.add(listItemModel);
         }
         return listItem;

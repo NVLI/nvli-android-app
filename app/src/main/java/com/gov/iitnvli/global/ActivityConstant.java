@@ -6,4 +6,5 @@ package com.gov.iitnvli.global;
 public interface ActivityConstant {
 
     int BOOK_DETAIL_FRAGMENT = 1;
+    int THESISK_DETAIL_FRAGMENT = 2;
 }

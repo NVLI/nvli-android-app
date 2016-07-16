@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/books"
+    android:background="@color/thesis"
     tools:context=".home.books.FragmentBookDetail">
 
 
@@ -22,7 +22,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:background="@color/books">
+                android:background="@color/thesis">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -37,14 +37,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-                    android:text="@string/books"
+                    android:text="@string/thesis"
                     android:textColor="@color/white"
                     android:textSize="@dimen/headerLevelFont" />
 
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/bookImage"
+                android:id="@+id/theisImage"
                 android:layout_width="80dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"
@@ -52,7 +52,7 @@
                  />
 
             <TextView
-                android:id="@+id/bookTitle"
+                android:id="@+id/thesisTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"
@@ -70,7 +70,7 @@
                 android:background="@color/dividerColor" />
 
             <TextView
-                android:id="@+id/bookAuthor"
+                android:id="@+id/thesisAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -80,7 +80,7 @@
                 android:textSize="@dimen/firstLevelFont" />
 
             <TextView
-                android:id="@+id/bookEdition"
+                android:id="@+id/thesisPublisherName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5th Edition"
@@ -89,7 +89,7 @@
                 android:textSize="@dimen/firstLevelFont" />
 
             <TextView
-                android:id="@+id/bookYear"
+                android:id="@+id/theisPublishYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2010"
@@ -98,7 +98,7 @@
                 android:textSize="@dimen/firstLevelFont" />
 
             <TextView
-                android:id="@+id/bookDescription"
+                android:id="@+id/thesisDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
