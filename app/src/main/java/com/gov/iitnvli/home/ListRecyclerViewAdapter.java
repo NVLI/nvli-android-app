@@ -3,6 +3,7 @@ package com.gov.iitnvli.home;
 import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
 import com.squareup.picasso.Picasso;
 
@@ -87,6 +89,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             title = (TextView) itemView.findViewById(R.id.title);
             image = (ImageView) itemView.findViewById(R.id.image);
             category = (TextView) itemView.findViewById(R.id.category);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openBookDetail();
+                }
+            });
         }
     }
 
@@ -103,6 +111,17 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             description = (TextView) itemView.findViewById(R.id.description);
             image = (ImageView) itemView.findViewById(R.id.image);
             category = (TextView) itemView.findViewById(R.id.category);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("------ Inside click-----"," *****");
+                    openBookDetail();
+                }
+            });
         }
+    }
+
+    private void openBookDetail() {
+        activity.navigateTo(ActivityConstant.BOOK_DETAIL_FRAGMENT,null, true, null);
     }
 }

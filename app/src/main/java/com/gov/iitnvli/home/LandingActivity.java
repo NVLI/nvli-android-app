@@ -1,15 +1,19 @@
 package com.gov.iitnvli.home;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.global.ActivityConstant;
 
 
 public class LandingActivity extends AppCompatActivity implements MaterialViewPager.Listener {
@@ -176,6 +181,52 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
             }
             return "";
         }
+    }
+
+    public void navigateTo(int position, Object obj, boolean state, Bundle bundle) {
+
+        switch (position) {
+            case ActivityConstant.BOOK_DETAIL_FRAGMENT: {
+                FragmentBookDetail fragmentBookDetail = new FragmentBookDetail();
+                changeFragment(fragmentBookDetail, state);
+            }
+            break;
+            default:
+                break;
+        }
+    }
+
+    public void resetToHomeScreen() {
+        Log.e("Reset", "Resetting to Homescreen");
+        FragmentManager fManager = getSupportFragmentManager();
+        fManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    private void changeFragment(Fragment fragmentToChange, boolean state) {
+        try {
+            hideKeyboard();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentView, fragmentToChange);
+            if (state) {
+                fragmentTransaction.addToBackStack(fragmentToChange.getClass().toString());
+                Log.e("Add", fragmentToChange.getClass().toString());
+            }
+            fragmentTransaction.commit();
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = this.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(getApplicationContext());
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }
