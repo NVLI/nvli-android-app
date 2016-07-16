@@ -30,6 +30,7 @@ public class FragmentBookDetail extends Fragment {
     private TextView bookAuthor;
     private String imgUrl = "http://media.wiley.com/product_data/coverImage300/47/04704754/0470475447.jpg";
     private ListItemModel listItemModel;
+    private ImageView backBtn;
 
     public FragmentBookDetail() {
         // Required empty public constructor
@@ -53,6 +54,14 @@ public class FragmentBookDetail extends Fragment {
 
         bookImage = (ImageView) parentView.findViewById(R.id.bookImage);
         Picasso.with(activity).load(imgUrl).into(bookImage);
+
+        backBtn = (ImageView) parentView.findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.getSupportFragmentManager().popBackStack();
+            }
+        });
 
         bookTitle = (TextView) parentView.findViewById(R.id.bookTitle);
         bookEdition = (TextView) parentView.findViewById(R.id.bookEdition);

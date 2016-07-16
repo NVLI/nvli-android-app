@@ -29,6 +29,7 @@ public class FragmentThesisDetail extends Fragment {
     private TextView thesisAuthor;
     private String imgUrl = "http://coverart.oclc.org/ImageWebSvc/oclc/+-+08790499_140.jpg?SearchOrder=+-+OT,OS,TN,GO,FA";
     private ListItemModel listItemModel;
+    private ImageView backBtn;
 
     public FragmentThesisDetail() {
         // Required empty public constructor
@@ -50,6 +51,13 @@ public class FragmentThesisDetail extends Fragment {
 
         parentView = inflater.inflate(R.layout.fragment_thesis_detail, container, false);
 
+        backBtn = (ImageView) parentView.findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.getSupportFragmentManager().popBackStack();
+            }
+        });
         thesisImage = (ImageView) parentView.findViewById(R.id.theisImage);
         Picasso.with(activity).load(imgUrl).into(thesisImage);
 
