@@ -2,16 +2,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/books"
     tools:context="com.gov.iitnvli.home.FragmentBookDetail">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:clickable="true">
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/books">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/backarrow" />
+
+                <TextView
+                    android:id="@+id/headerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:text="Books"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/headerLevelFont" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/drawerbg" />
+
+            <TextView
+                android:id="@+id/bookTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:text="Physics / John D. Cutnell, Kenneth W. Johnson"
+                android:textAlignment="center"
+                android:textColor="@color/titleColor"
+                android:textSize="@dimen/largeFont" />
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/dividerColor" />
+
+            <TextView
+                android:id="@+id/bookEdition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="5th Edition"
+                android:textAlignment="center"
+                android:textColor="@color/titleColor"
+                android:textSize="@dimen/firstLevelFont" />
+
+            <TextView
+                android:id="@+id/bookYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2010"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/firstLevelFont" />
+
+            <TextView
+                android:id="@+id/bookDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="30dp"
+                android:lineSpacingExtra="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Introduction and mathematical concepts -- Kinematics in one dimension -- Kinematics in two dimensions -- Forces and Newton's Laws of Motion -- Dynamics of uniform circular motion -- Work and energy -- Impulse and momentum -- Rotational kinematics -- Rotational dynamics -- Simple harmonic motion and elasticity -- Fluids -- Temperature and heat -- Transfer of heat -- Ideal gas law and kinetic theory -- Thermodynamics -- Waves and sound -- Principle of linear superposition and interference phenomena -- Electric forces and electric fields -- Electric pootential energy and the electric potential -- Electric circuits -- Magnetic forces and magnetic fields -- Electromagentic induction -- Alternating current circuits -- Electromagentic waves -- Reflection of light: mirrors -- Refraction of light: lenses and optical instruments -- Interference andt he wave nature of light -- Special relativity -- Particles and waves -- Nature of the atom -- Nuclear physics and radioactivity -- Ionizing radiation, nuclear energy, and elementary particles."
+                android:textColor="@color/titleColor"
+                android:textSize="@dimen/firstLevelFont" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </FrameLayout>

@@ -4,6 +4,7 @@
     <dimen name="thirdLevelFont">12sp</dimen>
     <dimen name="fourthLevelFont">10sp</dimen>
     <dimen name="headerLevelFont">18sp</dimen>
+    <dimen name="largeFont">22sp</dimen>
 
 
 </resources>

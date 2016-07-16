@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="titleColor">#000000</color>
     <color name="textColor">#FF939393</color>
+    <color name="dividerColor">#FFC2C2BF</color>
 
     <color name="books">#c0392b</color>
     <color name="archieve">#34495e</color>
