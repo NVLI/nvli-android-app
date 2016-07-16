@@ -63,8 +63,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof BigListItemHolder) {
+            ListItemModel listItemModel = itemList.get(position);
+            ((BigListItemHolder) holder).title.setText(listItemModel.getTitle());
+            Picasso.with(activity).load(listItemModel.getHeaderImage()).into(((BigListItemHolder) holder).image);
+            ((BigListItemHolder) holder).category.setText(listItemModel.getSubcategory());
         } else if (holder instanceof SmallListItemHolder) {
-           ListItemModel listItemModel= itemList.get(position);
+            ListItemModel listItemModel = itemList.get(position);
             ((SmallListItemHolder) holder).title.setText(listItemModel.getTitle());
             ((SmallListItemHolder) holder).description.setText(listItemModel.getDescription());
             Picasso.with(activity).load(listItemModel.getImage()).into(((SmallListItemHolder) holder).image);
@@ -74,9 +78,15 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public class BigListItemHolder extends RecyclerView.ViewHolder {
 
+        public TextView title;
+        public ImageView image;
+        public TextView category;
+
         public BigListItemHolder(View itemView) {
             super(itemView);
-
+            title = (TextView) itemView.findViewById(R.id.title);
+            image = (ImageView) itemView.findViewById(R.id.image);
+            category = (TextView) itemView.findViewById(R.id.category);
         }
     }
 

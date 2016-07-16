@@ -9,6 +9,15 @@ public class ListItemModel {
     private String image;
     private String description;
     private String subcategory;
+    private String headerImage;
+
+    public String getHeaderImage() {
+        return headerImage;
+    }
+
+    public void setHeaderImage(String headerImage) {
+        this.headerImage = headerImage;
+    }
 
     public String getTitle() {
         return title;
