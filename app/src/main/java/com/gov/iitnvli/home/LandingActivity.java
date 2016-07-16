@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
@@ -26,6 +28,9 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
     private Toolbar toolbar;
     private ImageView headerLogo;
     private int pageCount = 8;
+    private ListView drawerList;
+    String[] testValues = new String[]{"Home", "News", "Settings", "Logout",
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,10 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
         }
+
+        drawerList = (ListView) findViewById(R.id.menuList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, testValues);
+        drawerList.setAdapter(adapter);
     }
 
     @Override
@@ -120,7 +129,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         return null;
     }
 
-    private class CustomViewPagerAdapter extends FragmentStatePagerAdapter{
+    private class CustomViewPagerAdapter extends FragmentStatePagerAdapter {
 
         public CustomViewPagerAdapter(FragmentManager fm) {
             super(fm);
