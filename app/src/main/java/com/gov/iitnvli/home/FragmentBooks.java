@@ -58,10 +58,12 @@ public class FragmentBooks extends Fragment {
         for (int i = 0; i < 20; i++) {
             ListItemModel listItemModel = new ListItemModel();
             listItemModel.setTitle("Physics / John D. Cutnell, Kenneth W. Johnson");
-            listItemModel.setHeaderImage("https://writescience.files.wordpress.com/2014/02/mybookshelf.jpg");
+            listItemModel.setHeaderImage("http://i.imgur.com/hke6CkU.jpg");
             listItemModel.setImage("http://media.wiley.com/product_data/coverImage300/47/04704754/0470475447.jpg");
             listItemModel.setDescription("Introduction and mathematical concepts -- Kinematics in one dimension -- Kinematics in two dimensions -- Forces and Newton's Laws of Motion -- Dynamics of uniform circular motion -- Work and energy -- Impulse and momentum -- Rotational kinematics -- Rotational dynamics -- Simple harmonic motion and elasticity -- Fluids -- Temperature and heat -- Transfer of heat -- Ideal gas law and kinetic theory -- Thermodynamics -- Waves and sound -- Principle of linear superposition and interference phenomena -- Electric forces and electric fields -- Electric pootential energy and the electric potential -- Electric circuits -- Magnetic forces and magnetic fields -- Electromagentic induction -- Alternating current circuits -- Electromagentic waves -- Reflection of light: mirrors -- Refraction of light: lenses and optical instruments -- Interference andt he wave nature of light -- Special relativity -- Particles and waves -- Nature of the atom -- Nuclear physics and radioactivity -- Ionizing radiation, nuclear energy, and elementary particles.");
             listItemModel.setSubcategory("Physics");
+            listItemModel.setEdition("8th Edition");
+            listItemModel.setYear("2012");
             listItem.add(listItemModel);
         }
         return listItem;

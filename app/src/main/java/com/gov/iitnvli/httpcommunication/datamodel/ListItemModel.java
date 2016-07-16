@@ -10,6 +10,24 @@ public class ListItemModel {
     private String description;
     private String subcategory;
     private String headerImage;
+    private String edition;
+    private String year;
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
 
     public String getHeaderImage() {
         return headerImage;

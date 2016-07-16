@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -21,12 +22,21 @@ public class FragmentBookDetail extends Fragment {
     private View parentView;
     private LandingActivity activity;
     private ImageView bookImage;
+    private TextView bookTitle;
+    private TextView bookEdition;
+    private TextView bookYear;
+    private TextView bookDescription;
     private String imgUrl = "http://media.wiley.com/product_data/coverImage300/47/04704754/0470475447.jpg";
+    private ListItemModel listItemModel;
 
     public FragmentBookDetail() {
         // Required empty public constructor
     }
 
+    public void setBookDetailData(ListItemModel listItemModel){
+
+        this.listItemModel = listItemModel;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +51,17 @@ public class FragmentBookDetail extends Fragment {
 
         bookImage = (ImageView) parentView.findViewById(R.id.bookImage);
         Picasso.with(activity).load(imgUrl).into(bookImage);
+
+        bookTitle = (TextView) parentView.findViewById(R.id.bookTitle);
+        bookEdition = (TextView) parentView.findViewById(R.id.bookEdition);
+        bookYear = (TextView) parentView.findViewById(R.id.bookYear);
+        bookDescription = (TextView) parentView.findViewById(R.id.bookDescription);
+
+        bookTitle.setText(listItemModel.getTitle());
+        bookEdition.setText(listItemModel.getEdition());
+        bookYear.setText(listItemModel.getYear());
+        bookDescription.setText(listItemModel.getDescription());
+
         return parentView;
     }
 

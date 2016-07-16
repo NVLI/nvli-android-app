@@ -23,6 +23,7 @@ import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.global.ActivityConstant;
+import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
 
 
 public class LandingActivity extends AppCompatActivity implements MaterialViewPager.Listener {
@@ -188,6 +189,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         switch (position) {
             case ActivityConstant.BOOK_DETAIL_FRAGMENT: {
                 FragmentBookDetail fragmentBookDetail = new FragmentBookDetail();
+                fragmentBookDetail.setBookDetailData((ListItemModel) obj);
                 changeFragment(fragmentBookDetail, state);
             }
             break;

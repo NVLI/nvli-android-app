@@ -69,12 +69,14 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             ((BigListItemHolder) holder).title.setText(listItemModel.getTitle());
             Picasso.with(activity).load(listItemModel.getHeaderImage()).into(((BigListItemHolder) holder).image);
             ((BigListItemHolder) holder).category.setText(listItemModel.getSubcategory());
+            ((BigListItemHolder) holder).particularItem = listItemModel;
         } else if (holder instanceof SmallListItemHolder) {
             ListItemModel listItemModel = itemList.get(position);
             ((SmallListItemHolder) holder).title.setText(listItemModel.getTitle());
             ((SmallListItemHolder) holder).description.setText(listItemModel.getDescription());
             Picasso.with(activity).load(listItemModel.getImage()).into(((SmallListItemHolder) holder).image);
             ((SmallListItemHolder) holder).category.setText(listItemModel.getSubcategory());
+            ((SmallListItemHolder) holder).particularItem = listItemModel;
         }
     }
 
@@ -83,6 +85,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
         public TextView title;
         public ImageView image;
         public TextView category;
+        public ListItemModel particularItem;
 
         public BigListItemHolder(View itemView) {
             super(itemView);
@@ -92,7 +95,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openBookDetail();
+                    openBookDetail(particularItem);
                 }
             });
         }
@@ -104,6 +107,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
         public TextView description;
         public ImageView image;
         public TextView category;
+        public ListItemModel particularItem;
 
         public SmallListItemHolder(View itemView) {
             super(itemView);
@@ -114,14 +118,13 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("------ Inside click-----"," *****");
-                    openBookDetail();
+                    openBookDetail(particularItem);
                 }
             });
         }
     }
 
-    private void openBookDetail() {
-        activity.navigateTo(ActivityConstant.BOOK_DETAIL_FRAGMENT,null, true, null);
+    private void openBookDetail(ListItemModel particularItem) {
+        activity.navigateTo(ActivityConstant.BOOK_DETAIL_FRAGMENT,particularItem, true, null);
     }
 }
