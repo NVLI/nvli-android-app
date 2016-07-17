@@ -97,7 +97,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 headerLogo.setImageResource(R.drawable.book);
                 return HeaderDesign.fromColorResAndUrl(
                         R.color.books,
-                        "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                        "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
             case 1:
                 headerLogo.setImageResource(R.drawable.thesis);
                 return HeaderDesign.fromColorResAndUrl(
@@ -112,12 +112,12 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 headerLogo.setImageResource(R.drawable.archieve);
                 return HeaderDesign.fromColorResAndUrl(
                         R.color.archieve,
-                        "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                        "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
             case 4:
                 headerLogo.setImageResource(R.drawable.audiovideo);
                 return HeaderDesign.fromColorResAndUrl(
                         R.color.audioVideo,
-                        "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                        "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
             case 5:
                 headerLogo.setImageResource(R.drawable.manuscript);
                 return HeaderDesign.fromColorResAndUrl(
@@ -132,7 +132,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 headerLogo.setImageResource(R.drawable.map);
                 return HeaderDesign.fromColorResAndUrl(
                         R.color.map,
-                        "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                        "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
         }
         //execute others actions if needed //
         return null;
