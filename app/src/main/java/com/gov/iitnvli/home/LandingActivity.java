@@ -1,6 +1,7 @@
 package com.gov.iitnvli.home;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -9,9 +10,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -21,13 +23,13 @@ import android.widget.ListView;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.datamodel.ListItemModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.home.books.FragmentBookDetail;
 import com.gov.iitnvli.home.books.FragmentBooks;
 import com.gov.iitnvli.home.search.FragmentSearch;
 import com.gov.iitnvli.home.thesis.FragmentThesis;
 import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
-import com.gov.iitnvli.datamodel.ListItemModel;
 
 
 public class LandingActivity extends AppCompatActivity implements MaterialViewPager.Listener {
@@ -256,4 +258,18 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_search) {
+            navigateTo(ActivityConstant.SEARCH_FRAGMENT, null, true, null);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

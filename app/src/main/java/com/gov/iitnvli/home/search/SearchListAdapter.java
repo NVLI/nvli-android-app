@@ -100,15 +100,15 @@ public class SearchListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        switch (rowType) {
-            case TYPE_ROW:
-                holder.sectionHeader.setText(itemList.get(position).getHeader());
-                break;
-            case TYPE_HEADER:
-                holder.title.setText(itemList.get(position).getTitle());
-                holder.description.setText(itemList.get(position).getDescription());
-                break;
-        }
+//        switch (rowType) {
+//            case TYPE_ROW:
+//                holder.sectionHeader.setText(itemList.get(position).getHeader());
+//                break;
+//            case TYPE_HEADER:
+//                holder.title.setText(itemList.get(position).getTitle());
+//                holder.description.setText(itemList.get(position).getDescription());
+//                break;
+//        }
 
 
         return convertView;
