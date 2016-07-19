@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.home.LandingActivity;
-import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
+import com.gov.iitnvli.datamodel.ListItemModel;
 import com.squareup.picasso.Picasso;
 
 /**

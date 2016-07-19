@@ -1,7 +1,6 @@
 package com.gov.iitnvli.home.books;
 
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.home.LandingActivity;
-import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
+import com.gov.iitnvli.datamodel.ListItemModel;
 import com.squareup.picasso.Picasso;
 
 /**

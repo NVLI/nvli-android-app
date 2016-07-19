@@ -24,9 +24,10 @@ import com.gov.iitnvli.R;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.home.books.FragmentBookDetail;
 import com.gov.iitnvli.home.books.FragmentBooks;
+import com.gov.iitnvli.home.search.FragmentSearch;
 import com.gov.iitnvli.home.thesis.FragmentThesis;
 import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
-import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
+import com.gov.iitnvli.datamodel.ListItemModel;
 
 
 public class LandingActivity extends AppCompatActivity implements MaterialViewPager.Listener {
@@ -210,6 +211,11 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 FragmentThesisDetail fragmentThesisDetail = new FragmentThesisDetail();
                 fragmentThesisDetail.setThesisDetailData((ListItemModel) obj);
                 changeFragment(fragmentThesisDetail, state);
+            }
+            break;
+            case ActivityConstant.SEARCH_FRAGMENT: {
+                FragmentSearch fragmentSearch = new FragmentSearch();
+                changeFragment(fragmentSearch, state);
             }
             break;
             default:

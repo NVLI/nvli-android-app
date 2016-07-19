@@ -1,4 +1,4 @@
-package com.gov.iitnvli.httpcommunication.datamodel;
+package com.gov.iitnvli.datamodel;
 
 /**
  * Created by Murtuza on 7/15/16.

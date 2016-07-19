@@ -1,9 +1,6 @@
 package com.gov.iitnvli.home;
 
-import android.media.Image;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +9,7 @@ import android.widget.TextView;
 
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.global.ActivityConstant;
-import com.gov.iitnvli.httpcommunication.datamodel.ListItemModel;
+import com.gov.iitnvli.datamodel.ListItemModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

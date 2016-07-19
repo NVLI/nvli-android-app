@@ -7,4 +7,5 @@ public interface ActivityConstant {
 
     int BOOK_DETAIL_FRAGMENT = 1;
     int THESISK_DETAIL_FRAGMENT = 2;
+    int SEARCH_FRAGMENT = 3;
 }
