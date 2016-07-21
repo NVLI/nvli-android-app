@@ -10,6 +10,16 @@ public class SearchDataModel {
     public String title;
     public String description;
 
+    public int getImageRes() {
+        return imageRes;
+    }
+
+    public void setImageRes(int imageRes) {
+        this.imageRes = imageRes;
+    }
+
+    public int imageRes;
+
     public String getHeader() {
         return header;
     }

@@ -72,21 +72,29 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
         layoutManager = new LinearLayoutManager(activity);
         searchListView.setLayoutManager(layoutManager);
         searchListAdapter = new SearchListAdapter(activity);
-        setListData();
+
+        setTestData(getString(R.string.books), R.drawable.book_square);
+        setTestData(getString(R.string.thesis), R.drawable.thesis_square);
+        setTestData(getString(R.string.museum), R.drawable.musem_square);
+        setTestData(getString(R.string.archieves), R.drawable.archieve_square);
+        setTestData(getString(R.string.audiovideo), R.drawable.video_square);
+        setTestData(getString(R.string.manuscripts), R.drawable.manuscrip_square);
+        setTestData(getString(R.string.newspaper), R.drawable.newspaper_square);
+        setTestData(getString(R.string.maps), R.drawable.map_sqare);
+
         searchListView.setAdapter(searchListAdapter);
 
         return parentView;
     }
 
-    private void setListData() {
-        for (int i = 0; i < 30; i++) {
-            SearchDataModel searchDataModel = new SearchDataModel();
-            if (i % 4 == 0) {
-                searchDataModel.setHeader("Header " + i);
-                searchListAdapter.addSectionHeaderItem(searchDataModel);
-            }
-            searchDataModel.setTitle("Row" + i);
-            searchDataModel.setDescription("Description" + i);
+    private void setTestData(String headerTitle, int imageRes) {
+        SearchDataModel searchDataModel = new SearchDataModel();
+        searchDataModel.setHeader(headerTitle);
+        searchDataModel.setImageRes(imageRes);
+        searchListAdapter.addSectionHeaderItem(searchDataModel);
+        for (int i = 0; i < 3; i++) {
+            searchDataModel.setTitle("Physics / John D. Cutnell, Kenneth W. Johnson");
+            searchDataModel.setDescription("Introduction and mathematical concepts -- Kinematics in one dimension -- Kinematics in two dimensions -- Forces and Newton's Laws of Motion -- Dynamics of uniform circular motion -- Work and energy -- Impulse and momentum -- Rotational kinematics -- Rotational dynamics -- Simple harmonic motion and elasticity -- Fluids -- Temperature and heat -- Transfer of heat -- Ideal gas law and kinetic theory -- Thermodynamics -- Waves and sound -- Principle of linear superposition and interference phenomena -- Electric forces and electric fields -- Electric pootential energy and the electric potential -- Electric circuits -- Magnetic forces and magnetic fields -- Electromagentic induction -- Alternating current circuits -- Electromagentic waves -- Reflection of light: mirrors -- Refraction of light: lenses and optical instruments -- Interference andt he wave nature of light -- Special relativity -- Particles and waves -- Nature of the atom -- Nuclear physics and radioactivity -- Ionizing radiation, nuclear energy, and elementary particles.");
             searchListAdapter.addItem(searchDataModel);
         }
 

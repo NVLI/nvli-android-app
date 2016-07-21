@@ -25,6 +25,7 @@ import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.datamodel.ListItemModel;
 import com.gov.iitnvli.global.ActivityConstant;
+import com.gov.iitnvli.global.AppConstants;
 import com.gov.iitnvli.home.books.FragmentBookDetail;
 import com.gov.iitnvli.home.books.FragmentBooks;
 import com.gov.iitnvli.home.search.FragmentSearch;
@@ -151,8 +152,10 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         public Fragment getItem(int position) {
             switch (position % pageCount) {
                 case 0:
+                    AppConstants.currentTab = AppConstants.BOOK;
                     return new FragmentBooks();
                 case 1:
+                    AppConstants.currentTab = AppConstants.ARTICLE;
                     return new FragmentThesis();
                 case 2:
                     return new FragmentBooks();

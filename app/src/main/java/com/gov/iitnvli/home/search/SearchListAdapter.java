@@ -82,6 +82,7 @@ public class SearchListAdapter extends RecyclerView.Adapter {
             SearchDataModel searchDataModel = itemList.get(position);
             ((RowListItemHolder) holder).title.setText(searchDataModel.getTitle());
             ((RowListItemHolder) holder).description.setText(searchDataModel.getDescription());
+            ((RowListItemHolder) holder).listIcon.setImageResource(searchDataModel.getImageRes());
         }
     }
 
