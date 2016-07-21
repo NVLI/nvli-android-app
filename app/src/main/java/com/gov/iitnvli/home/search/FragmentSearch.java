@@ -49,15 +49,15 @@ public class FragmentSearch extends Fragment {
     }
 
     private void setListData() {
-        for (int i = 1; i < 30; i++) {
+        for (int i = 0; i < 30; i++) {
             SearchDataModel searchDataModel = new SearchDataModel();
-            searchDataModel.setTitle("Row" + i);
-            searchDataModel.setDescription("Description" + i);
-            searchListAdapter.addItem(searchDataModel);
             if (i % 4 == 0) {
                 searchDataModel.setHeader("Header " +i);
                 searchListAdapter.addSectionHeaderItem(searchDataModel);
             }
+            searchDataModel.setTitle("Row" + i);
+            searchDataModel.setDescription("Description" + i);
+            searchListAdapter.addItem(searchDataModel);
         }
 
     }

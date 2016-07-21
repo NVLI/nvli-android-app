@@ -1,6 +1,7 @@
 package com.gov.iitnvli.home.search;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,14 +86,16 @@ public class SearchListAdapter extends BaseAdapter {
             switch (rowType) {
                 case TYPE_ROW:
                     convertView = inflater.inflate(R.layout.search_row, null);
-                    holder.sectionHeader = (TextView) convertView.findViewById(R.id.sectionHeader);
-                    holder.more = (TextView) convertView.findViewById(R.id.more);
-                    break;
-                case TYPE_HEADER:
-                    convertView = inflater.inflate(R.layout.search_header, null);
                     holder.listIcon = (ImageView) convertView.findViewById(R.id.listIcon);
                     holder.title = (TextView) convertView.findViewById(R.id.title);
                     holder.description = (TextView) convertView.findViewById(R.id.description);
+                    break;
+                case TYPE_HEADER:
+                    convertView = inflater.inflate(R.layout.search_header, null);
+                    holder.sectionHeader = (TextView) convertView.findViewById(R.id.sectionHeader);
+                    holder.sectionHeader.setTypeface(Typeface.DEFAULT_BOLD);
+                    holder.more = (TextView) convertView.findViewById(R.id.more);
+                    holder.more.setTypeface(Typeface.DEFAULT_BOLD);
                     break;
             }
             convertView.setTag(holder);
@@ -100,15 +103,15 @@ public class SearchListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-//        switch (rowType) {
-//            case TYPE_ROW:
-//                holder.sectionHeader.setText(itemList.get(position).getHeader());
-//                break;
-//            case TYPE_HEADER:
-//                holder.title.setText(itemList.get(position).getTitle());
-//                holder.description.setText(itemList.get(position).getDescription());
-//                break;
-//        }
+        switch (rowType) {
+            case TYPE_ROW:
+                holder.title.setText(itemList.get(position).getTitle());
+                holder.description.setText(itemList.get(position).getDescription());
+                break;
+            case TYPE_HEADER:
+                holder.sectionHeader.setText(itemList.get(position).getHeader());
+                break;
+        }
 
 
         return convertView;
