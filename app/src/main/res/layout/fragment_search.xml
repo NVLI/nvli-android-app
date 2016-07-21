@@ -49,12 +49,10 @@
 
             </LinearLayout>
 
-          <ListView
+          <android.support.v7.widget.RecyclerView
               android:id="@+id/searchListView"
               android:layout_width="match_parent"
-              android:divider="@android:color/transparent"
-              android:dividerHeight="0dp"
-              android:layout_height="wrap_content"></ListView>
+              android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 

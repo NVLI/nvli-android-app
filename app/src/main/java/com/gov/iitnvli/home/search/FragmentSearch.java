@@ -1,15 +1,18 @@
 package com.gov.iitnvli.home.search;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
@@ -22,9 +25,10 @@ import com.gov.iitnvli.home.LandingActivity;
 public class FragmentSearch extends Fragment implements TextView.OnEditorActionListener {
 
 
+    private RecyclerView searchListView;
     private View parentView;
+    private LinearLayoutManager layoutManager;
     private LandingActivity activity;
-    private ListView searchListView;
     private SearchListAdapter searchListAdapter;
     private EditText searchET;
 
@@ -34,12 +38,18 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(searchET, InputMethodManager.SHOW_FORCED);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         activity = (LandingActivity) getActivity();
 
-        if (parentView != null){
+        if (parentView != null) {
             return parentView;
         }
 
@@ -47,8 +57,10 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
 
         searchET = (EditText) parentView.findViewById(R.id.searchET);
         searchET.setOnEditorActionListener(this);
-
-        searchListView = (ListView) parentView.findViewById(R.id.searchListView);
+        searchET.requestFocus();
+        searchListView = (RecyclerView) parentView.findViewById(R.id.searchListView);
+        layoutManager = new LinearLayoutManager(activity);
+        searchListView.setLayoutManager(layoutManager);
         searchListAdapter = new SearchListAdapter(activity);
         setListData();
         searchListView.setAdapter(searchListAdapter);
@@ -60,7 +72,7 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
         for (int i = 0; i < 30; i++) {
             SearchDataModel searchDataModel = new SearchDataModel();
             if (i % 4 == 0) {
-                searchDataModel.setHeader("Header " +i);
+                searchDataModel.setHeader("Header " + i);
                 searchListAdapter.addSectionHeaderItem(searchDataModel);
             }
             searchDataModel.setTitle("Row" + i);
