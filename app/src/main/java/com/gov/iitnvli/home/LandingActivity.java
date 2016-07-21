@@ -35,24 +35,34 @@ import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
 
 public class LandingActivity extends AppCompatActivity implements MaterialViewPager.Listener {
 
-    private DrawerLayout drawer;
+    //    private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
     private MaterialViewPager mViewPager;
     private Toolbar toolbar;
     private ImageView headerLogo;
     private int pageCount = 8;
-    private ListView drawerList;
-    String[] testValues = new String[]{"Home", "News", "Settings", "Logout",
-    };
+//    private ListView drawerList;
+//    String[] testValues = new String[]{"Home", "News", "Settings", "Logout"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
 
-        setupDrawer();
+//        setupDrawer();
+        setTitle("");
         headerLogo = (ImageView) findViewById(R.id.headerLogo);
         setupMaterialViewPager();
+        hideHomeButton();
+    }
+
+    private void hideHomeButton() {
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setDisplayShowHomeEnabled(false);
+            actionBar.setHomeButtonEnabled(false);
+        }
     }
 
     private void setupMaterialViewPager() {
@@ -68,8 +78,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
     }
 
-    private void setupDrawer() {
-        setTitle("");
+    /*private void setupDrawer() {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(this, drawer, 0, 0);
         drawer.setDrawerListener(drawerToggle);
@@ -86,13 +95,13 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         drawerList = (ListView) findViewById(R.id.menuList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, testValues);
         drawerList.setAdapter(adapter);
-    }
+    }*/
 
-    @Override
+   /* @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
-    }
+    }*/
 
     @Override
     public HeaderDesign getHeaderDesign(int page) {

@@ -32,6 +32,6 @@
     </FrameLayout>
 
 
-    <include layout="@layout/drawer" />
+    <!--<include layout="@layout/drawer" />-->
 
 </android.support.v4.widget.DrawerLayout>
