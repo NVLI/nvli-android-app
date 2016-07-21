@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
@@ -31,6 +32,7 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
     private LandingActivity activity;
     private SearchListAdapter searchListAdapter;
     private EditText searchET;
+    private ImageView backBtn;
 
     public FragmentSearch() {
         // Required empty public constructor
@@ -54,6 +56,14 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
         }
 
         parentView = inflater.inflate(R.layout.fragment_search, container, false);
+        backBtn = (ImageView) parentView.findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.hideKeyboard();
+                activity.getSupportFragmentManager().popBackStack();
+            }
+        });
 
         searchET = (EditText) parentView.findViewById(R.id.searchET);
         searchET.setOnEditorActionListener(this);
