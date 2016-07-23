@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:customfont="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_okcancel_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"></TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"></View>
+
+    <TextView
+        android:id="@+id/txt_ok_cancel_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="3"
+        android:padding="10dp"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/firstLevelFont"></TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btn_alert_ok"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttom_theme"
+            android:gravity="center"
+            android:text="@string/yes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/secondLevelFont"></Button>
+
+        <Button
+            android:id="@+id/btn_alert_cancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttom_theme"
+            android:gravity="center"
+            android:text="@string/no"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/secondLevelFont"></Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>

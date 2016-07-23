@@ -13,6 +13,9 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.gov.iitnvli.R;
+import com.gov.iitnvli.global.AppConstants;
+import com.gov.iitnvli.utils.DialogUtils;
 
 import org.json.JSONObject;
 
@@ -57,12 +60,19 @@ public class HttpRequestManager implements Response.ErrorListener {
    public void getDashboardList(String offset, String limit) {
        requestType = RequestType.GET_DASHBOARD_LIST;
        String urlRequest = HttpConstants.getDashBoardList;
-       urlRequest += "_format=" + "hal_json";
+       urlRequest += "_format=" + AppConstants.FORMAT;
        urlRequest += "&offset=" + offset;
        urlRequest += "&limit=" + limit;
        makeJsonRequest(urlRequest, null, Request.Method.GET);
    }
 
+    public void getDetails(String entityId) {
+        requestType = RequestType.GET_DETAILS;
+        String urlRequest = HttpConstants.getDetails;
+        urlRequest += entityId + "?";
+        urlRequest += "_format=" + AppConstants.FORMAT;
+        makeJsonRequest(urlRequest, null, Request.Method.GET);
+    }
 
     private void makeJsonRequest(String url, HashMap<String, String> params, int    methodType) {
         Log.e("Request: ", url);
@@ -94,7 +104,7 @@ public class HttpRequestManager implements Response.ErrorListener {
         Log.e("Error Response", "............");
         progressdialog.dismiss();
         String msg = (cDetector.isConnectingToInternet()) ? "Service currently unavailable. Please try again later" : "Please check your internet connection";
-        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+        DialogUtils.showAlert(activity, msg);
         cleanRequest();
     }
 

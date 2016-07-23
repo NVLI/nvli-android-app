@@ -49,7 +49,7 @@ public class FragmentMuseumDetail extends Fragment {
             return parentView;
         }
 
-        parentView = inflater.inflate(R.layout.fragment_book_detail, container, false);
+        parentView = inflater.inflate(R.layout.fragment_museum_detail, container, false);
 
         bookImage = (ImageView) parentView.findViewById(R.id.bookImage);
         Picasso.with(activity).load(imgUrl).into(bookImage);

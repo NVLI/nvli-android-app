@@ -8,8 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.datamodel.DetailsDataModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.datamodel.ListItemModel;
+import com.gov.iitnvli.httpcommunication.httpmanager.HttpRequestManager;
+import com.gov.iitnvli.httpcommunication.httpmanager.RequestType;
+import com.gov.iitnvli.httpcommunication.httpmanager.ResponseHandler;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -17,18 +21,20 @@ import java.util.List;
 /**
  * Created by Murtuza on 7/15/16.
  */
-public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
+public class ListRecyclerViewAdapter extends RecyclerView.Adapter implements ResponseHandler{
 
     private List<ListItemModel> itemList;
     private LandingActivity activity;
     private int fragType;
     private int TYPE_HEADER = 0;
     private int TYPE_CELL = 1;
+    private HttpRequestManager httpRequestManager;
 
     public ListRecyclerViewAdapter(List<ListItemModel> itemList, LandingActivity activity, int fragType) {
         this.itemList = itemList;
         this.activity = activity;
         this.fragType = fragType;
+        httpRequestManager = new HttpRequestManager(activity, this);
     }
 
     @Override
@@ -89,7 +95,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openScr(particularItem.getEntityId());
+                    callDetailWS(particularItem.getEntityId());
                 }
             });
         }
@@ -110,26 +116,42 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openScr(particularItem.getEntityId());
+                    callDetailWS(particularItem.getEntityId());
                 }
             });
         }
     }
 
-    private void openScr(String entityID) {
+    private void openScr(DetailsDataModel detailsDataModel) {
         if (fragType == ActivityConstant.BOOK_DETAIL_FRAGMENT){
-//            openBookDetail(entityID);
+            openBookDetail(detailsDataModel);
         }
         else  if (fragType == ActivityConstant.THESISK_DETAIL_FRAGMENT){
-//            openThesisDetail(entityID);
+            openThesisDetail(detailsDataModel);
         }
     }
 
-    private void openBookDetail(ListItemModel particularItem) {
-        activity.navigateTo(ActivityConstant.BOOK_DETAIL_FRAGMENT,particularItem, true, null);
+    private void callDetailWS(String entityID) {
+        httpRequestManager.getDetails(entityID);
     }
 
-    private void openThesisDetail(ListItemModel particularItem) {
-        activity.navigateTo(ActivityConstant.THESISK_DETAIL_FRAGMENT,particularItem, true, null);
+    @Override
+    public void onSuccessResponse(Object responseObject, String responseType) {
+        if (responseObject == null){
+            return;
+        }
+
+        if (responseType.equals(RequestType.GET_DETAILS)){
+            openScr((DetailsDataModel) responseObject);
+        }
+
+    }
+
+    private void openBookDetail(DetailsDataModel detailsDataModel) {
+        activity.navigateTo(ActivityConstant.BOOK_DETAIL_FRAGMENT,detailsDataModel, true, null);
+    }
+
+    private void openThesisDetail(DetailsDataModel detailsDataModel) {
+        activity.navigateTo(ActivityConstant.THESISK_DETAIL_FRAGMENT,detailsDataModel, true, null);
     }
 }

@@ -80,20 +80,22 @@
                 android:textColor="@color/titleColor"
                 android:textSize="@dimen/firstLevelFont" />
 
-            <TextView
-                android:id="@+id/bookEdition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5th Edition"
-                android:textAlignment="center"
-                android:textColor="@color/titleColor"
-                android:textSize="@dimen/firstLevelFont" />
 
             <TextView
                 android:id="@+id/bookYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2010"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/firstLevelFont" />
+
+            <TextView
+                android:id="@+id/publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Published By - "
                 android:textAlignment="center"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/firstLevelFont" />

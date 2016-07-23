@@ -8,5 +8,6 @@ public interface HttpConstants {
     String endPoint = "http://dev-nvli.iitb.ac.in/rest/v1/";
 
     String getDashBoardList = endPoint + "resource_type?";
+    String getDetails = endPoint + "node/";
 
 }

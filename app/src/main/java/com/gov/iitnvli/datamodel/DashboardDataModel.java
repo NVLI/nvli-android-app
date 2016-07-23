@@ -5,18 +5,9 @@ import java.util.List;
 /**
  * Created by Murtuza on 7/23/16.
  */
-public class DashboardDataModel {
+public class DashboardDataModel extends ResponseState{
 
-    private boolean success;
     private ResultBean result;
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
 
     public ResultBean getResult() {
         return result;

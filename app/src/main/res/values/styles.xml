@@ -30,4 +30,9 @@
         <item name="color">@color/drawerArrowColor</item>
     </style>
 
+    <style name="DropVertical">
+        <item name="android:windowEnterAnimation">@anim/drop_in_from_top</item>
+        <item name="android:windowExitAnimation">@anim/drop_out_to_bottom</item>
+    </style>
+
 </resources>

@@ -45,7 +45,7 @@ public class FragmentMuseum extends Fragment {
             return parentView;
         }
 
-        parentView = inflater.inflate(R.layout.fragment_books, container, false);
+        parentView = inflater.inflate(R.layout.fragment_museum, container, false);
 
         museumList = (RecyclerView) parentView.findViewById(R.id.museumList);
         layoutManager = new LinearLayoutManager(activity);

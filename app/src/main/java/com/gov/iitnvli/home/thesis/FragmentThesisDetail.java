@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.datamodel.DetailsDataModel;
 import com.gov.iitnvli.home.LandingActivity;
 import com.gov.iitnvli.datamodel.ListItemModel;
 import com.squareup.picasso.Picasso;
@@ -27,17 +28,16 @@ public class FragmentThesisDetail extends Fragment {
     private TextView thesisYear;
     private TextView thesisDescription;
     private TextView thesisAuthor;
-    private String imgUrl = "http://coverart.oclc.org/ImageWebSvc/oclc/+-+08790499_140.jpg?SearchOrder=+-+OT,OS,TN,GO,FA";
-    private ListItemModel listItemModel;
+    private String imgUrl = "https://www.teachingenglish.org.uk/sites/teacheng/files/styles/large/public/images/class_journals_iStock_000021675732XSmall.jpg?itok=eRUojT6a";
     private ImageView backBtn;
+    private DetailsDataModel detailsDataModel;
 
     public FragmentThesisDetail() {
         // Required empty public constructor
     }
 
-    public void setThesisDetailData(ListItemModel listItemModel){
-
-        this.listItemModel = listItemModel;
+    public void setThesisDetailData(DetailsDataModel detailsDataModel){
+        this.detailsDataModel = detailsDataModel;
     }
 
     @Override
@@ -58,20 +58,52 @@ public class FragmentThesisDetail extends Fragment {
                 activity.getSupportFragmentManager().popBackStack();
             }
         });
-        thesisImage = (ImageView) parentView.findViewById(R.id.theisImage);
-        Picasso.with(activity).load(imgUrl).into(thesisImage);
 
+        thesisImage = (ImageView) parentView.findViewById(R.id.theisImage);
         thesisTitle = (TextView) parentView.findViewById(R.id.thesisTitle);
         thesisPublisherName = (TextView) parentView.findViewById(R.id.thesisPublisherName);
         thesisYear = (TextView) parentView.findViewById(R.id.theisPublishYear);
         thesisDescription = (TextView) parentView.findViewById(R.id.thesisDescription);
         thesisAuthor = (TextView) parentView.findViewById(R.id.thesisAuthor);
 
-        thesisTitle.setText(listItemModel.getTitle());
-        thesisPublisherName.setText(listItemModel.getEdition());
-        thesisYear.setText(listItemModel.getYear());
-        thesisDescription.setText(listItemModel.getDescription());
-        thesisAuthor.setText(listItemModel.getAuthor());
+        DetailsDataModel.ResultBean.MetadataBean metadataBean = detailsDataModel.getResult().get(0).getMetadata();
+        DetailsDataModel.ResultBean.ResourceBean resourceBean = detailsDataModel.getResult().get(0).getResource();
+
+        if (metadataBean.getTitle_full() == null) {
+            thesisTitle.setText(resourceBean.getNode_title());
+        } else {
+            thesisTitle.setText(metadataBean.getTitle_full());
+        }
+
+        if (resourceBean.getImage_url().isEmpty()) {
+            Picasso.with(activity).load(imgUrl).into(thesisImage);
+        } else {
+            Picasso.with(activity).load(resourceBean.getImage_url()).into(thesisImage);
+        }
+
+        if (!metadataBean.getPublisher().isEmpty()) {
+            thesisPublisherName.setText("Published By - " + metadataBean.getPublisher().get(0));
+        } else {
+            thesisPublisherName.setVisibility(View.GONE);
+        }
+
+        if (!metadataBean.getPublishDate().isEmpty()) {
+            thesisYear.setText(metadataBean.getPublishDate().get(0));
+        } else {
+            thesisYear.setVisibility(View.GONE);
+        }
+
+        if (metadataBean.getDescription() == null) {
+            thesisDescription.setText(resourceBean.getNode_title());
+        } else {
+            thesisDescription.setText(metadataBean.getDescription());
+        }
+
+        if (!metadataBean.getAuthor().isEmpty()) {
+            thesisAuthor.setText(metadataBean.getAuthor().get(0));
+        } else {
+            thesisAuthor.setVisibility(View.GONE);
+        }
 
         return parentView;
     }

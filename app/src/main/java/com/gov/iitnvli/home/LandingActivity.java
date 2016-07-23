@@ -24,6 +24,7 @@ import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.datamodel.DashboardDataModel;
+import com.gov.iitnvli.datamodel.DetailsDataModel;
 import com.gov.iitnvli.datamodel.ListItemModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.global.AppConstants;
@@ -241,13 +242,13 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         switch (position) {
             case ActivityConstant.BOOK_DETAIL_FRAGMENT: {
                 FragmentBookDetail fragmentBookDetail = new FragmentBookDetail();
-                fragmentBookDetail.setBookDetailData((ListItemModel) obj);
+                fragmentBookDetail.setBookDetailData((DetailsDataModel) obj);
                 changeFragment(fragmentBookDetail, state);
             }
             break;
             case ActivityConstant.THESISK_DETAIL_FRAGMENT: {
                 FragmentThesisDetail fragmentThesisDetail = new FragmentThesisDetail();
-                fragmentThesisDetail.setThesisDetailData((ListItemModel) obj);
+                fragmentThesisDetail.setThesisDetailData((DetailsDataModel) obj);
                 changeFragment(fragmentThesisDetail, state);
             }
             break;

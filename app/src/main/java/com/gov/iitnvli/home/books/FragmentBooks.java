@@ -68,7 +68,7 @@ public class FragmentBooks extends Fragment {
         for (int i = 0; i < booksData.size(); i++) {
             ListItemModel listItemModel = new ListItemModel();
 
-            if (booksData.get(i).getMetadata().getTitle_full() == null){
+                       if (booksData.get(i).getMetadata().getTitle_full() == null){
                 listItemModel.setTitle(booksData.get(i).getResource().getNode_title());
             }else{
                 listItemModel.setTitle(booksData.get(i).getMetadata().getTitle_full());
