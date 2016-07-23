@@ -10,8 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
-import com.gov.iitnvli.datamodel.SearchDataModel;
+import com.gov.iitnvli.datamodel.SearchListModel;
 import com.gov.iitnvli.home.LandingActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -24,21 +25,23 @@ public class SearchListAdapter extends RecyclerView.Adapter {
     private static final int TYPE_ROW = 0;
     private static final int TYPE_HEADER = 1;
 
-    private ArrayList<SearchDataModel> itemList = new ArrayList<>();
+    private ArrayList<SearchListModel> itemList = new ArrayList<>();
     private TreeSet<Integer> sectionHeader = new TreeSet<Integer>();
 
     private LayoutInflater inflater;
+    private LandingActivity activity;
 
     public SearchListAdapter(LandingActivity activity) {
+        this.activity = activity;
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void addItem(SearchDataModel item) {
+    public void addItem(SearchListModel item) {
         itemList.add(item);
         notifyDataSetChanged();
     }
 
-    public void addSectionHeaderItem(SearchDataModel item) {
+    public void addSectionHeaderItem(SearchListModel item) {
         itemList.add(item);
         sectionHeader.add(itemList.size() - 1);
         notifyDataSetChanged();
@@ -76,13 +79,18 @@ public class SearchListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeaderListItemHolder) {
-            SearchDataModel searchDataModel = itemList.get(position);
-            ((HeaderListItemHolder) holder).sectionHeader.setText(searchDataModel.getHeader());
+            SearchListModel searchListModel = itemList.get(position);
+            ((HeaderListItemHolder) holder).sectionHeader.setText(searchListModel.getHeader());
         } else if (holder instanceof RowListItemHolder) {
-            SearchDataModel searchDataModel = itemList.get(position);
-            ((RowListItemHolder) holder).title.setText(searchDataModel.getTitle());
-            ((RowListItemHolder) holder).description.setText(searchDataModel.getDescription());
-            ((RowListItemHolder) holder).listIcon.setImageResource(searchDataModel.getImageRes());
+            SearchListModel searchListModel = itemList.get(position);
+            ((RowListItemHolder) holder).title.setText(searchListModel.getTitle());
+            ((RowListItemHolder) holder).description.setText(searchListModel.getDescription());
+            if (searchListModel.getImageUrl() == null) {
+                ((RowListItemHolder) holder).listIcon.setImageResource(searchListModel.getImageRes());
+            } else {
+                Picasso.with(activity).load(searchListModel.getImageUrl()).into(((RowListItemHolder) holder).listIcon);
+            }
+
         }
     }
 

@@ -10,6 +10,7 @@ import com.gov.iitnvli.R;
 import com.gov.iitnvli.datamodel.DashboardDataModel;
 import com.gov.iitnvli.datamodel.DetailsDataModel;
 import com.gov.iitnvli.datamodel.ResponseState;
+import com.gov.iitnvli.datamodel.SearchDataModel;
 import com.gov.iitnvli.global.AppConstants;
 import com.gov.iitnvli.utils.DialogUtils;
 
@@ -37,6 +38,12 @@ public class ParseJson {
             DetailsDataModel detailsDataModel = gson.fromJson(response, DetailsDataModel.class);
             boolean isValid = isValidResponse(detailsDataModel);
             return (isValid) ? detailsDataModel : null;
+        }
+
+        if (requestType.equals(RequestType.GET_SEARCH_RESULT) ) {
+            SearchDataModel searchDataModel = gson.fromJson(response, SearchDataModel.class);
+            boolean isValid = isValidResponse(searchDataModel);
+            return (isValid) ? searchDataModel : null;
         }
 
         return null;

@@ -6,9 +6,5 @@ package com.gov.iitnvli.global;
 public class AppConstants {
 
     public final static String FORMAT = "hal_json";
-
-    public final static String BOOK = "book";
-    public final static String ARTICLE = "article";
-
-    public static String currentTab = BOOK;
+    public static int currentTabIdx = 0;
 }

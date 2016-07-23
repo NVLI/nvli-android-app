@@ -9,5 +9,5 @@ public interface HttpConstants {
 
     String getDashBoardList = endPoint + "resource_type?";
     String getDetails = endPoint + "node/";
-
+    String getSearchResult = endPoint + "search?";
 }

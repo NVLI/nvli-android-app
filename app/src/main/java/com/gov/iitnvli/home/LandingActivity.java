@@ -112,6 +112,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
 
     @Override
     public HeaderDesign getHeaderDesign(int page) {
+        AppConstants.currentTabIdx = page;
         switch (page) {
             case 0:
                 headerLogo.setImageResource(R.drawable.book);
@@ -182,12 +183,10 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         public Fragment getItem(int position) {
             switch (position % pageCount) {
                 case 0:
-                    AppConstants.currentTab = AppConstants.BOOK;
                     FragmentBooks fragmentBooks = new FragmentBooks();
                     fragmentBooks.setBooksData(dashboardDataModel.getResult().getBook());
                     return fragmentBooks;
                 case 1:
-                    AppConstants.currentTab = AppConstants.ARTICLE;
                     FragmentThesis fragmentThesis = new FragmentThesis();
                     fragmentThesis.setThesisData(dashboardDataModel.getResult().getArticle());
                     return fragmentThesis;
