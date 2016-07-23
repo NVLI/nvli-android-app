@@ -14,6 +14,16 @@ public class ListItemModel {
     private String year;
     private String author;
 
+    public String getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(String entityId) {
+        this.entityId = entityId;
+    }
+
+    private String entityId;
+
     public String getAuthor() {
         return author;
     }

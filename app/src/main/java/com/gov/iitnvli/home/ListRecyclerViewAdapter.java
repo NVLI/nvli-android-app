@@ -66,14 +66,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             ListItemModel listItemModel = itemList.get(position);
             ((BigListItemHolder) holder).title.setText(listItemModel.getTitle());
             Picasso.with(activity).load(listItemModel.getHeaderImage()).into(((BigListItemHolder) holder).image);
-            ((BigListItemHolder) holder).category.setText(listItemModel.getSubcategory());
             ((BigListItemHolder) holder).particularItem = listItemModel;
         } else if (holder instanceof SmallListItemHolder) {
             ListItemModel listItemModel = itemList.get(position);
             ((SmallListItemHolder) holder).title.setText(listItemModel.getTitle());
             ((SmallListItemHolder) holder).description.setText(listItemModel.getDescription());
             Picasso.with(activity).load(listItemModel.getImage()).into(((SmallListItemHolder) holder).image);
-            ((SmallListItemHolder) holder).category.setText(listItemModel.getSubcategory());
             ((SmallListItemHolder) holder).particularItem = listItemModel;
         }
     }
@@ -82,18 +80,16 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
 
         public TextView title;
         public ImageView image;
-        public TextView category;
         public ListItemModel particularItem;
 
         public BigListItemHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             image = (ImageView) itemView.findViewById(R.id.image);
-            category = (TextView) itemView.findViewById(R.id.category);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openScr(particularItem);
+                    openScr(particularItem.getEntityId());
                 }
             });
         }
@@ -104,7 +100,6 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
         public TextView title;
         public TextView description;
         public ImageView image;
-        public TextView category;
         public ListItemModel particularItem;
 
         public SmallListItemHolder(View itemView) {
@@ -112,22 +107,21 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter {
             title = (TextView) itemView.findViewById(R.id.title);
             description = (TextView) itemView.findViewById(R.id.description);
             image = (ImageView) itemView.findViewById(R.id.image);
-            category = (TextView) itemView.findViewById(R.id.category);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openScr(particularItem);
+                    openScr(particularItem.getEntityId());
                 }
             });
         }
     }
 
-    private void openScr(ListItemModel particularItem) {
+    private void openScr(String entityID) {
         if (fragType == ActivityConstant.BOOK_DETAIL_FRAGMENT){
-            openBookDetail(particularItem);
+//            openBookDetail(entityID);
         }
         else  if (fragType == ActivityConstant.THESISK_DETAIL_FRAGMENT){
-            openThesisDetail(particularItem);
+//            openThesisDetail(entityID);
         }
     }
 

@@ -1,11 +1,10 @@
-package com.gov.iitnvli.home.books;
+package com.gov.iitnvli.home.musem;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,10 @@ import android.view.ViewGroup;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.datamodel.DashboardDataModel;
+import com.gov.iitnvli.datamodel.ListItemModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.home.LandingActivity;
 import com.gov.iitnvli.home.ListRecyclerViewAdapter;
-import com.gov.iitnvli.datamodel.ListItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentBooks extends Fragment {
+public class FragmentMuseum extends Fragment {
 
     private RecyclerView booksList;
     private ListRecyclerViewAdapter adapter;
@@ -33,7 +32,7 @@ public class FragmentBooks extends Fragment {
     private LandingActivity activity;
     private List<DashboardDataModel.ResultBean.BookBean> booksData;
 
-    public FragmentBooks() {
+    public FragmentMuseum() {
         // Required empty public constructor
     }
 
@@ -57,39 +56,24 @@ public class FragmentBooks extends Fragment {
         layoutManager = new LinearLayoutManager(activity);
         booksList.setLayoutManager(layoutManager);
         booksList.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        adapter = new ListRecyclerViewAdapter(getBooksData(), activity, ActivityConstant.BOOK_DETAIL_FRAGMENT);
+        adapter = new ListRecyclerViewAdapter(getTestData(), activity, ActivityConstant.BOOK_DETAIL_FRAGMENT);
         booksList.setAdapter(adapter);
 
         return parentView;
     }
 
-    private ArrayList<ListItemModel> getBooksData() {
+    public ArrayList<ListItemModel> getTestData() {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
-        for (int i = 0; i < booksData.size(); i++) {
+        for (int i = 0; i < 20; i++) {
             ListItemModel listItemModel = new ListItemModel();
-
-            if (booksData.get(i).getMetadata().getTitle_full() == null){
-                listItemModel.setTitle(booksData.get(i).getResource().getNode_title());
-            }else{
-                listItemModel.setTitle(booksData.get(i).getMetadata().getTitle_full());
-            }
-
-            if (booksData.get(i).getResource().getImage_url().isEmpty()){
-                listItemModel.setHeaderImage("http://inanutshell.ca/wp-content/uploads/2016/01/Books-Banner.jpg");
-                listItemModel.setImage("http://inanutshell.ca/wp-content/uploads/2016/01/Books-Banner.jpg");
-            }else{
-                listItemModel.setHeaderImage(booksData.get(i).getResource().getImage_url());
-                listItemModel.setImage(booksData.get(i).getResource().getImage_url());
-            }
-
-            if (booksData.get(i).getMetadata().getDescription() == null){
-                listItemModel.setDescription(booksData.get(i).getResource().getNode_title());
-            }else{
-                listItemModel.setDescription(booksData.get(i).getMetadata().getDescription());
-            }
-
-            listItemModel.setEntityId(booksData.get(i).getResource().getEntity_id());
-
+            listItemModel.setTitle("Physics / John D. Cutnell, Kenneth W. Johnson");
+            listItemModel.setHeaderImage("http://i.imgur.com/hke6CkU.jpg");
+            listItemModel.setImage("http://media.wiley.com/product_data/coverImage300/47/04704754/0470475447.jpg");
+            listItemModel.setDescription("Introduction and mathematical concepts -- Kinematics in one dimension -- Kinematics in two dimensions -- Forces and Newton's Laws of Motion -- Dynamics of uniform circular motion -- Work and energy -- Impulse and momentum -- Rotational kinematics -- Rotational dynamics -- Simple harmonic motion and elasticity -- Fluids -- Temperature and heat -- Transfer of heat -- Ideal gas law and kinetic theory -- Thermodynamics -- Waves and sound -- Principle of linear superposition and interference phenomena -- Electric forces and electric fields -- Electric pootential energy and the electric potential -- Electric circuits -- Magnetic forces and magnetic fields -- Electromagentic induction -- Alternating current circuits -- Electromagentic waves -- Reflection of light: mirrors -- Refraction of light: lenses and optical instruments -- Interference andt he wave nature of light -- Special relativity -- Particles and waves -- Nature of the atom -- Nuclear physics and radioactivity -- Ionizing radiation, nuclear energy, and elementary particles.");
+            listItemModel.setSubcategory("Physics");
+            listItemModel.setEdition("8th Edition");
+            listItemModel.setYear("2012");
+            listItemModel.setAuthor("John D. Cutnell, Kenneth W. Johnson");
             listItem.add(listItemModel);
         }
         return listItem;

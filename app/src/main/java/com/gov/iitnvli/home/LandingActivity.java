@@ -113,9 +113,9 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         switch (page) {
             case 0:
                 headerLogo.setImageResource(R.drawable.book);
-                return HeaderDesign.fromColorResAndUrl(
+                return HeaderDesign.fromColorResAndDrawable(
                         R.color.books,
-                        "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                        getResources().getDrawable(R.drawable.books_banner));
             case 1:
                 headerLogo.setImageResource(R.drawable.thesis);
                 return HeaderDesign.fromColorResAndUrl(
@@ -185,24 +185,18 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                     fragmentBooks.setBooksData(dashboardDataModel.getResult().getBook());
                     return fragmentBooks;
                 case 1:
-                    AppConstants.currentTab = AppConstants.ARTICLE;
-                    FragmentThesis fragmentThesis = new FragmentThesis();
-                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getArticle());
-                    return fragmentThesis;
+//                    AppConstants.currentTab = AppConstants.ARTICLE;
+//                    FragmentThesis fragmentThesis = new FragmentThesis();
+//                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getArticle());
+//                    return fragmentThesis;
                 case 2:
-                    return new FragmentBooks();
                 case 3:
-                    return new FragmentThesis();
                 case 4:
-                    return new FragmentBooks();
                 case 5:
-                    return new FragmentThesis();
                 case 6:
-                    return new FragmentBooks();
                 case 7:
-                    return new FragmentThesis();
                 default:
-                    return null;
+                    return new FragmentThesis();
             }
         }
 
