@@ -29,6 +29,7 @@ import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.global.AppConstants;
 import com.gov.iitnvli.home.books.FragmentBookDetail;
 import com.gov.iitnvli.home.books.FragmentBooks;
+import com.gov.iitnvli.home.musem.FragmentMuseum;
 import com.gov.iitnvli.home.search.FragmentSearch;
 import com.gov.iitnvli.home.thesis.FragmentThesis;
 import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
@@ -118,9 +119,9 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                         getResources().getDrawable(R.drawable.books_banner));
             case 1:
                 headerLogo.setImageResource(R.drawable.thesis);
-                return HeaderDesign.fromColorResAndUrl(
+                return HeaderDesign.fromColorResAndDrawable(
                         R.color.thesis,
-                        "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
+                        getResources().getDrawable(R.drawable.thesis_banner));
             case 2:
                 headerLogo.setImageResource(R.drawable.musem);
                 return HeaderDesign.fromColorResAndUrl(
@@ -185,18 +186,24 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                     fragmentBooks.setBooksData(dashboardDataModel.getResult().getBook());
                     return fragmentBooks;
                 case 1:
-//                    AppConstants.currentTab = AppConstants.ARTICLE;
-//                    FragmentThesis fragmentThesis = new FragmentThesis();
-//                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getArticle());
-//                    return fragmentThesis;
+                    AppConstants.currentTab = AppConstants.ARTICLE;
+                    FragmentThesis fragmentThesis = new FragmentThesis();
+                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getArticle());
+                    return fragmentThesis;
                 case 2:
+                    return new FragmentMuseum();
                 case 3:
+                    return new FragmentMuseum();
                 case 4:
+                    return new FragmentMuseum();
                 case 5:
+                    return new FragmentMuseum();
                 case 6:
+                    return new FragmentMuseum();
                 case 7:
+                    return new FragmentMuseum();
                 default:
-                    return new FragmentThesis();
+                    return new FragmentMuseum();
             }
         }
 

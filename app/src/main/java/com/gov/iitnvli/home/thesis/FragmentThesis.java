@@ -57,24 +57,39 @@ public class FragmentThesis extends Fragment {
         layoutManager = new LinearLayoutManager(activity);
         thesisList.setLayoutManager(layoutManager);
         thesisList.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        adapter = new ListRecyclerViewAdapter(getTestData(), activity, ActivityConstant.THESISK_DETAIL_FRAGMENT);
+        adapter = new ListRecyclerViewAdapter(getThesisData(), activity, ActivityConstant.THESISK_DETAIL_FRAGMENT);
         thesisList.setAdapter(adapter);
 
         return parentView;
     }
 
-    public ArrayList<ListItemModel> getTestData() {
+    private ArrayList<ListItemModel> getThesisData() {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < thesisData.size(); i++) {
             ListItemModel listItemModel = new ListItemModel();
-            listItemModel.setTitle("Guide to the successful thesis and dissertation : a handbook for students and faculty");
-            listItemModel.setHeaderImage("http://www.uiowa.edu/icru/files/icru/files/styles/large/public/honors%20thesis.jpg?itok=qZ8a0Cr3");
-            listItemModel.setImage("http://coverart.oclc.org/ImageWebSvc/oclc/+-+08790499_140.jpg?SearchOrder=+-+OT,OS,TN,GO,FA");
-            listItemModel.setDescription("Updated to reflect recent trends in thesis/dissertation preparation and research, this book examines confidentiality and privacy in Internet communications and considers the accuracy and reliability of Internet-reported research.");
-            listItemModel.setSubcategory("Academic");
-            listItemModel.setEdition("New York : M. Dekker");
-            listItemModel.setYear("1998");
-            listItemModel.setAuthor("James E Mauch, Jack W Birch");
+
+            if (thesisData.get(i).getMetadata().getTitle_full() == null){
+                listItemModel.setTitle(thesisData.get(i).getResource().getNode_title());
+            }else{
+                listItemModel.setTitle(thesisData.get(i).getMetadata().getTitle_full());
+            }
+
+            if (thesisData.get(i).getResource().getImage_url().isEmpty()){
+                listItemModel.setHeaderImage("https://www.teachingenglish.org.uk/sites/teacheng/files/styles/large/public/images/class_journals_iStock_000021675732XSmall.jpg?itok=eRUojT6a");
+                listItemModel.setImage("https://www.teachingenglish.org.uk/sites/teacheng/files/styles/large/public/images/class_journals_iStock_000021675732XSmall.jpg?itok=eRUojT6a");
+            }else{
+                listItemModel.setHeaderImage(thesisData.get(i).getResource().getImage_url());
+                listItemModel.setImage(thesisData.get(i).getResource().getImage_url());
+            }
+
+            if (thesisData.get(i).getMetadata().getDescription() == null){
+                listItemModel.setDescription(thesisData.get(i).getResource().getNode_title());
+            }else{
+                listItemModel.setDescription(thesisData.get(i).getMetadata().getDescription());
+            }
+
+            listItemModel.setEntityId(thesisData.get(i).getResource().getEntity_id());
+
             listItem.add(listItemModel);
         }
         return listItem;
