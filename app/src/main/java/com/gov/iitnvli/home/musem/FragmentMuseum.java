@@ -25,19 +25,14 @@ import java.util.List;
  */
 public class FragmentMuseum extends Fragment {
 
-    private RecyclerView booksList;
+    private RecyclerView museumList;
     private ListRecyclerViewAdapter adapter;
     private View parentView;
     private LinearLayoutManager layoutManager;
     private LandingActivity activity;
-    private List<DashboardDataModel.ResultBean.BookBean> booksData;
 
     public FragmentMuseum() {
         // Required empty public constructor
-    }
-
-    public void setBooksData(List<DashboardDataModel.ResultBean.BookBean> booksData){
-        this.booksData = booksData;
     }
 
     @Override
@@ -52,12 +47,12 @@ public class FragmentMuseum extends Fragment {
 
         parentView = inflater.inflate(R.layout.fragment_books, container, false);
 
-        booksList = (RecyclerView) parentView.findViewById(R.id.booksList);
+        museumList = (RecyclerView) parentView.findViewById(R.id.museumList);
         layoutManager = new LinearLayoutManager(activity);
-        booksList.setLayoutManager(layoutManager);
-        booksList.addItemDecoration(new MaterialViewPagerHeaderDecorator());
+        museumList.setLayoutManager(layoutManager);
+        museumList.addItemDecoration(new MaterialViewPagerHeaderDecorator());
         adapter = new ListRecyclerViewAdapter(getTestData(), activity, ActivityConstant.BOOK_DETAIL_FRAGMENT);
-        booksList.setAdapter(adapter);
+        museumList.setAdapter(adapter);
 
         return parentView;
     }
