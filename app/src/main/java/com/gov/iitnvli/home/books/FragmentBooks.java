@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.datamodel.DashboardDataModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.home.LandingActivity;
 import com.gov.iitnvli.home.ListRecyclerViewAdapter;
 import com.gov.iitnvli.datamodel.ListItemModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,11 +30,15 @@ public class FragmentBooks extends Fragment {
     private View parentView;
     private LinearLayoutManager layoutManager;
     private LandingActivity activity;
+    private List<DashboardDataModel.ResultBean.BookBean> booksData;
 
     public FragmentBooks() {
         // Required empty public constructor
     }
 
+    public void setBooksData(List<DashboardDataModel.ResultBean.BookBean> booksData){
+        this.booksData = booksData;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

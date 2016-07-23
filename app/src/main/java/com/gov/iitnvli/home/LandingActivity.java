@@ -23,6 +23,7 @@ import android.widget.ListView;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.datamodel.DashboardDataModel;
 import com.gov.iitnvli.datamodel.ListItemModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.global.AppConstants;
@@ -31,9 +32,12 @@ import com.gov.iitnvli.home.books.FragmentBooks;
 import com.gov.iitnvli.home.search.FragmentSearch;
 import com.gov.iitnvli.home.thesis.FragmentThesis;
 import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
+import com.gov.iitnvli.httpcommunication.httpmanager.HttpRequestManager;
+import com.gov.iitnvli.httpcommunication.httpmanager.RequestType;
+import com.gov.iitnvli.httpcommunication.httpmanager.ResponseHandler;
 
 
-public class LandingActivity extends AppCompatActivity implements MaterialViewPager.Listener {
+public class LandingActivity extends AppCompatActivity implements MaterialViewPager.Listener, ResponseHandler {
 
     //    private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
@@ -41,6 +45,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
     private Toolbar toolbar;
     private ImageView headerLogo;
     private int pageCount = 8;
+    private HttpRequestManager httpRequestManager;
 //    private ListView drawerList;
 //    String[] testValues = new String[]{"Home", "News", "Settings", "Logout"};
 
@@ -52,8 +57,14 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
 //        setupDrawer();
         setTitle("");
         headerLogo = (ImageView) findViewById(R.id.headerLogo);
-        setupMaterialViewPager();
+        mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+        toolbar = mViewPager.getToolbar();
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
         hideHomeButton();
+        httpRequestManager = new HttpRequestManager(this,this);
+        httpRequestManager.getDashboardList("0","5");
     }
 
     private void hideHomeButton() {
@@ -65,14 +76,8 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         }
     }
 
-    private void setupMaterialViewPager() {
-        mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
-        toolbar = mViewPager.getToolbar();
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
-
-        mViewPager.getViewPager().setAdapter(new CustomViewPagerAdapter(getSupportFragmentManager()));
+    private void setupMaterialViewPager(DashboardDataModel dashboardDataModel) {
+        mViewPager.getViewPager().setAdapter(new CustomViewPagerAdapter(getSupportFragmentManager(), dashboardDataModel));
         mViewPager.setMaterialViewPagerListener(this);
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
@@ -151,10 +156,24 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         return null;
     }
 
+    @Override
+    public void onSuccessResponse(Object responseObject, String responseType) {
+        if (responseObject == null){
+            return;
+        }
+
+        if (responseType.equals(RequestType.GET_DASHBOARD_LIST)){
+            setupMaterialViewPager((DashboardDataModel) responseObject);
+        }
+    }
+
     private class CustomViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        public CustomViewPagerAdapter(FragmentManager fm) {
+        private DashboardDataModel dashboardDataModel;
+
+        public CustomViewPagerAdapter(FragmentManager fm, DashboardDataModel dashboardDataModel) {
             super(fm);
+            this.dashboardDataModel = dashboardDataModel;
         }
 
         @Override
@@ -162,10 +181,14 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
             switch (position % pageCount) {
                 case 0:
                     AppConstants.currentTab = AppConstants.BOOK;
-                    return new FragmentBooks();
+                    FragmentBooks fragmentBooks = new FragmentBooks();
+                    fragmentBooks.setBooksData(dashboardDataModel.getResult().getBook());
+                    return fragmentBooks;
                 case 1:
                     AppConstants.currentTab = AppConstants.ARTICLE;
-                    return new FragmentThesis();
+                    FragmentThesis fragmentThesis = new FragmentThesis();
+                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getArticle());
+                    return fragmentThesis;
                 case 2:
                     return new FragmentBooks();
                 case 3:

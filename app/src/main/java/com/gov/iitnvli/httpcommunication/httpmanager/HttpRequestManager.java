@@ -25,7 +25,6 @@ import java.util.HashMap;
 public class HttpRequestManager implements Response.ErrorListener {
 
     private String requestType = "";
-    private boolean isProgress;
     private Activity activity;
     private RequestQueue requestQueue;
     private ResponseHandler responseHandler;
@@ -55,11 +54,17 @@ public class HttpRequestManager implements Response.ErrorListener {
         progressdialog.setIndeterminate(true);
     }
 
-   //All HTTP request call from here//
-    //TODO//
-    ////
+   public void getDashboardList(String offset, String limit) {
+       requestType = RequestType.GET_DASHBOARD_LIST;
+       String urlRequest = HttpConstants.getDashBoardList;
+       urlRequest += "_format=" + "hal_json";
+       urlRequest += "&offset=" + offset;
+       urlRequest += "&limit=" + limit;
+       makeJsonRequest(urlRequest, null, Request.Method.GET);
+   }
 
-    private void makeJsonRequest(String url, HashMap<String, String> params, int methodType) {
+
+    private void makeJsonRequest(String url, HashMap<String, String> params, int    methodType) {
         Log.e("Request: ", url);
 
         if (!isInternetAvailable()) {
@@ -67,8 +72,7 @@ public class HttpRequestManager implements Response.ErrorListener {
             return;
         }
         jListener = (jListener != null) ? jListener : new JListener();
-        if (isProgress)
-            progressdialog.show();
+        progressdialog.show();
 
         //GET request//
         JSONObject postData = null;
@@ -88,16 +92,14 @@ public class HttpRequestManager implements Response.ErrorListener {
 
     public void onErrorResponse(VolleyError vError) {
         Log.e("Error Response", "............");
-        if (isProgress)
-            progressdialog.dismiss();
+        progressdialog.dismiss();
         String msg = (cDetector.isConnectingToInternet()) ? "Service currently unavailable. Please try again later" : "Please check your internet connection";
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
         cleanRequest();
     }
 
     private void cleanRequest() {
-        if (isProgress)
-            progressdialog.dismiss();
+        progressdialog.dismiss();
         requestType = "";
     }
 

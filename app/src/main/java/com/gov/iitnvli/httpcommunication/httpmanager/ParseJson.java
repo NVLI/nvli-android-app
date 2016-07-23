@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.gov.iitnvli.datamodel.DashboardDataModel;
 
 
 public class ParseJson {
@@ -21,7 +22,11 @@ public class ParseJson {
 
         Gson gson = new GsonBuilder().create();
 
-        //Parse your json response into the data model  //
+        if (requestType.equals(RequestType.GET_DASHBOARD_LIST) ) {
+            DashboardDataModel dashboardDataModel = gson.fromJson(response, DashboardDataModel.class);
+            boolean isValid = isValidResponseGeneral(dashboardDataModel);
+            return (isValid) ? dashboardDataModel : null;
+        }
 
         return null;
     }
