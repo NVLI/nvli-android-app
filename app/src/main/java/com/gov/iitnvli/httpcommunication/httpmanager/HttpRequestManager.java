@@ -13,7 +13,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.gov.iitnvli.R;
 import com.gov.iitnvli.global.AppConstants;
 import com.gov.iitnvli.utils.DialogUtils;
 
@@ -76,7 +75,7 @@ public class HttpRequestManager implements Response.ErrorListener {
 
     public void getSearchResult(String searchStr,String type, String offset, String limit) {
         requestType = RequestType.GET_SEARCH_RESULT;
-        String urlRequest = HttpConstants.getDetails;
+        String urlRequest = HttpConstants.getSearchResult;
         urlRequest += "_format=" + AppConstants.FORMAT;
         urlRequest += "&offset=" + offset;
         urlRequest += "&limit=" + limit;

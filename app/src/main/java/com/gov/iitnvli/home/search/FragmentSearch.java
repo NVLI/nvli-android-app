@@ -24,6 +24,12 @@ import com.gov.iitnvli.home.LandingActivity;
 import com.gov.iitnvli.httpcommunication.httpmanager.HttpRequestManager;
 import com.gov.iitnvli.httpcommunication.httpmanager.RequestType;
 import com.gov.iitnvli.httpcommunication.httpmanager.ResponseHandler;
+import com.gov.iitnvli.utils.Utility;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +45,7 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
     private EditText searchET;
     private ImageView backBtn;
     private HttpRequestManager httpRequestManager;
+    private HashMap<String, ArrayList<SearchListModel>> groupMap;
 
     public FragmentSearch() {
         // Required empty public constructor
@@ -57,6 +64,7 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
 
         activity = (LandingActivity) getActivity();
         httpRequestManager = new HttpRequestManager(activity, this);
+        groupMap = new HashMap<>();
 
         if (parentView != null) {
             return parentView;
@@ -79,32 +87,7 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
         layoutManager = new LinearLayoutManager(activity);
         searchListView.setLayoutManager(layoutManager);
         searchListAdapter = new SearchListAdapter(activity);
-
-        setTestData(getString(R.string.books), R.drawable.book_square);
-        setTestData(getString(R.string.thesis), R.drawable.thesis_square);
-        setTestData(getString(R.string.museum), R.drawable.musem_square);
-        setTestData(getString(R.string.archieves), R.drawable.archieve_square);
-        setTestData(getString(R.string.audiovideo), R.drawable.video_square);
-        setTestData(getString(R.string.manuscripts), R.drawable.manuscrip_square);
-        setTestData(getString(R.string.newspaper), R.drawable.newspaper_square);
-        setTestData(getString(R.string.maps), R.drawable.map_sqare);
-
-        searchListView.setAdapter(searchListAdapter);
-
         return parentView;
-    }
-
-    private void setTestData(String headerTitle, int imageRes) {
-        SearchListModel searchListModel = new SearchListModel();
-        searchListModel.setHeader(headerTitle);
-        searchListModel.setImageRes(imageRes);
-        searchListAdapter.addSectionHeaderItem(searchListModel);
-        for (int i = 0; i < 3; i++) {
-            searchListModel.setTitle("Physics / John D. Cutnell, Kenneth W. Johnson");
-            searchListModel.setDescription("Introduction and mathematical concepts -- Kinematics in one dimension -- Kinematics in two dimensions -- Forces and Newton's Laws of Motion -- Dynamics of uniform circular motion -- Work and energy -- Impulse and momentum -- Rotational kinematics -- Rotational dynamics -- Simple harmonic motion and elasticity -- Fluids -- Temperature and heat -- Transfer of heat -- Ideal gas law and kinetic theory -- Thermodynamics -- Waves and sound -- Principle of linear superposition and interference phenomena -- Electric forces and electric fields -- Electric pootential energy and the electric potential -- Electric circuits -- Magnetic forces and magnetic fields -- Electromagentic induction -- Alternating current circuits -- Electromagentic waves -- Reflection of light: mirrors -- Refraction of light: lenses and optical instruments -- Interference andt he wave nature of light -- Special relativity -- Particles and waves -- Nature of the atom -- Nuclear physics and radioactivity -- Ionizing radiation, nuclear energy, and elementary particles.");
-            searchListAdapter.addItem(searchListModel);
-        }
-
     }
 
     @Override
@@ -112,7 +95,9 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
         if (actionId == EditorInfo.IME_ACTION_GO) {
             activity.hideKeyboard();
             String searchStr = searchET.getText().toString().trim();
-            if (!searchStr.isEmpty()){
+            if (!searchStr.isEmpty()) {
+                groupMap.clear();
+                searchListAdapter.clearData();
                 String[] tabsArry = getResources().getStringArray(R.array.tabArry);
                 httpRequestManager.getSearchResult(searchStr, tabsArry[AppConstants.currentTabIdx], "0", "5");
             }
@@ -123,26 +108,88 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
 
     @Override
     public void onSuccessResponse(Object responseObject, String responseType) {
-        if (responseObject == null){
+        if (responseObject == null) {
             return;
         }
 
-        if (responseType.equals(RequestType.GET_SEARCH_RESULT)){
-            SearchDataModel searchDataModel = (SearchDataModel) responseObject;
-//            setListData(searchDataModel.getResult().get(0));
+        if (responseType.equals(RequestType.GET_SEARCH_RESULT)) {
+
+            groupDataAsPerType((SearchDataModel) responseObject);
+            String[] typeKeys = activity.getResources().getStringArray(R.array.tabArry);
+
+            //This is for the current tab data//
+            if (groupMap.containsKey(typeKeys[AppConstants.currentTabIdx])){
+                setDataToList(groupMap.get(typeKeys[AppConstants.currentTabIdx]));
+            }
+
+            //This is for all other remaining tab data//
+            setRemainingTabData(typeKeys[AppConstants.currentTabIdx]);
+
+            searchListView.setAdapter(searchListAdapter);
         }
     }
 
-//    private void setListData(SearchDataModel.ResultBean resultBean) {
-//        SearchListModel searchListModel = new SearchListModel();
-//        searchListModel.setHeader(headerTitle);
-//        searchListModel.setImageRes(imageRes);
-//        searchListAdapter.addSectionHeaderItem(searchListModel);
-//        for (int i = 0; i < 3; i++) {
-//            searchListModel.setTitle("Physics / John D. Cutnell, Kenneth W. Johnson");
-//            searchListModel.setDescription("Introduction and mathematical concepts -- Kinematics in one dimension -- Kinematics in two dimensions -- Forces and Newton's Laws of Motion -- Dynamics of uniform circular motion -- Work and energy -- Impulse and momentum -- Rotational kinematics -- Rotational dynamics -- Simple harmonic motion and elasticity -- Fluids -- Temperature and heat -- Transfer of heat -- Ideal gas law and kinetic theory -- Thermodynamics -- Waves and sound -- Principle of linear superposition and interference phenomena -- Electric forces and electric fields -- Electric pootential energy and the electric potential -- Electric circuits -- Magnetic forces and magnetic fields -- Electromagentic induction -- Alternating current circuits -- Electromagentic waves -- Reflection of light: mirrors -- Refraction of light: lenses and optical instruments -- Interference andt he wave nature of light -- Special relativity -- Particles and waves -- Nature of the atom -- Nuclear physics and radioactivity -- Ionizing radiation, nuclear energy, and elementary particles.");
-//            searchListAdapter.addItem(searchListModel);
-//        }
-//
-//    }
+    private void setRemainingTabData(String currentKey) {
+        Iterator iterator = groupMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+
+            Map.Entry pair = (Map.Entry) iterator.next();
+            ArrayList<SearchListModel> listData = (ArrayList<SearchListModel>) pair.getValue();
+
+            if (!currentKey.equalsIgnoreCase(String.valueOf(pair.getKey()))){
+                setDataToList(listData);
+            }
+        }
+    }
+
+    private void groupDataAsPerType(SearchDataModel searchDataModel) {
+        for (int i = 0; i < searchDataModel.getResult().size(); i++) {
+            SearchDataModel.ResultBean.MetadataBean metadataBean = searchDataModel.getResult().get(i).getMetadata();
+            SearchDataModel.ResultBean.ResourceBean resourceBean = searchDataModel.getResult().get(i).getResource();
+
+            String key = "Others";
+            if (resourceBean.getType() != null && !resourceBean.getType().isEmpty()) {
+                key = resourceBean.getType();
+            }
+            if (!groupMap.containsKey(key)) {
+                groupMap.put(key, new ArrayList<SearchListModel>());
+            }
+            groupMap.get(key).add(getSearchList(key, searchDataModel.getResult().get(i)));
+        }
+    }
+
+    private SearchListModel getSearchList(String key, SearchDataModel.ResultBean resultBean) {
+        SearchListModel searchListModel = new SearchListModel();
+
+        searchListModel.setHeader(key);
+
+        if (resultBean.getMetadata().getTitle_full() == null) {
+            searchListModel.setTitle(resultBean.getResource().getNode_title());
+        } else {
+            searchListModel.setTitle(resultBean.getMetadata().getTitle_full());
+        }
+
+        if (resultBean.getResource().getImage_url().isEmpty()) {
+            searchListModel.setImageRes(Utility.getImageResBasedOnType(key, activity));
+        } else {
+            searchListModel.setImageUrl(resultBean.getResource().getImage_url());
+        }
+
+        if (resultBean.getMetadata().getDescription() == null) {
+            searchListModel.setDescription(resultBean.getResource().getNode_title());
+        } else {
+            searchListModel.setDescription(resultBean.getMetadata().getDescription());
+        }
+
+        return searchListModel;
+    }
+
+    public void setDataToList(ArrayList<SearchListModel> listData) {
+        if (!listData.isEmpty()){
+            searchListAdapter.addSectionHeaderItem(listData.get(0));
+            for (int i = 0; i < listData.size(); i++) {
+                searchListAdapter.addItem(listData.get(i));
+            }
+        }
+    }
 }

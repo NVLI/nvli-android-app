@@ -1,6 +1,5 @@
 package com.gov.iitnvli.home.search;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,12 +27,10 @@ public class SearchListAdapter extends RecyclerView.Adapter {
     private ArrayList<SearchListModel> itemList = new ArrayList<>();
     private TreeSet<Integer> sectionHeader = new TreeSet<Integer>();
 
-    private LayoutInflater inflater;
     private LandingActivity activity;
 
     public SearchListAdapter(LandingActivity activity) {
         this.activity = activity;
-        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public void addItem(SearchListModel item) {
@@ -47,6 +44,11 @@ public class SearchListAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+    public void clearData() {
+        itemList.clear();
+        sectionHeader.clear();
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemViewType(int position) {
         return sectionHeader.contains(position) ? TYPE_HEADER : TYPE_ROW;
