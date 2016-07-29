@@ -121,7 +121,11 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter implements Res
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    callDetailWS(particularItem.getEntityId());
+                    String enityId = particularItem.getEntityId();
+                    if (AppConstants.isDevMode){
+                        enityId = "9806";
+                    }
+                    callDetailWS(enityId);
                 }
             });
         }
