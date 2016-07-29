@@ -122,7 +122,7 @@ public class FragmentGeneral extends Fragment {
         for (int i = 0; i < museumBeen.size(); i++) {
             String title = museumBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = museumBeen.get(i).getResource().getNode_title();
-            String headerImage = "http://inanutshell.ca/wp-content/uploads/2016/01/Books-Banner.jpg";
+            String headerImage = "http://www.brooklynrail.org/article_image/image/300/germany_report_guggenheim_banners.jpg";
             String image = museumBeen.get(i).getResource().getImage_url();
             String description = museumBeen.get(i).getMetadata().getDescription();
             String entityId = museumBeen.get(i).getResource().getEntity_id();
@@ -136,7 +136,7 @@ public class FragmentGeneral extends Fragment {
         for (int i = 0; i < govtArchivesBeen.size(); i++) {
             String title = govtArchivesBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = govtArchivesBeen.get(i).getResource().getNode_title();
-            String headerImage = "https://www.teachingenglish.org.uk/sites/teacheng/files/styles/large/public/images/class_journals_iStock_000021675732XSmall.jpg?itok=eRUojT6a";
+            String headerImage = "http://blogs.mtu.edu/library/files/2009/07/mtu-archives1.jpg";
             String image = govtArchivesBeen.get(i).getResource().getImage_url();
             String description = govtArchivesBeen.get(i).getMetadata().getDescription();
             String entityId = govtArchivesBeen.get(i).getResource().getEntity_id();
@@ -150,7 +150,7 @@ public class FragmentGeneral extends Fragment {
         for (int i = 0; i < audioVideoBeen.size(); i++) {
             String title = audioVideoBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = audioVideoBeen.get(i).getResource().getNode_title();
-            String headerImage = "http://inanutshell.ca/wp-content/uploads/2016/01/Books-Banner.jpg";
+            String headerImage = "http://www.kffmil.org/hp_wordpress/wp-content/uploads/2014/05/AV-Banner.jpeg";
             String image = audioVideoBeen.get(i).getResource().getImage_url();
             String description = audioVideoBeen.get(i).getMetadata().getDescription();
             String entityId = audioVideoBeen.get(i).getResource().getEntity_id();
@@ -164,7 +164,7 @@ public class FragmentGeneral extends Fragment {
         for (int i = 0; i < manuscriptsBeen.size(); i++) {
             String title = manuscriptsBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = manuscriptsBeen.get(i).getResource().getNode_title();
-            String headerImage = "https://www.teachingenglish.org.uk/sites/teacheng/files/styles/large/public/images/class_journals_iStock_000021675732XSmall.jpg?itok=eRUojT6a";
+            String headerImage = "http://americanhistory.si.edu/sites/default/files/exhibitions/manuscript_header_0.jpg";
             String image = manuscriptsBeen.get(i).getResource().getImage_url();
             String description = manuscriptsBeen.get(i).getMetadata().getDescription();
             String entityId = manuscriptsBeen.get(i).getResource().getEntity_id();
@@ -179,7 +179,7 @@ public class FragmentGeneral extends Fragment {
         for (int i = 0; i < newspaperArchivesBeen.size(); i++) {
             String title = newspaperArchivesBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = newspaperArchivesBeen.get(i).getResource().getNode_title();
-            String headerImage = "http://inanutshell.ca/wp-content/uploads/2016/01/Books-Banner.jpg";
+            String headerImage = "http://www.herefordroundtable.co.uk/wp-content/uploads/2015/12/newspaper-banner.jpg";
             String image = newspaperArchivesBeen.get(i).getResource().getImage_url();
             String description = newspaperArchivesBeen.get(i).getMetadata().getDescription();
             String entityId = newspaperArchivesBeen.get(i).getResource().getEntity_id();
@@ -194,7 +194,7 @@ public class FragmentGeneral extends Fragment {
         for (int i = 0; i < mapsBeen.size(); i++) {
             String title = mapsBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = mapsBeen.get(i).getResource().getNode_title();
-            String headerImage = "https://www.teachingenglish.org.uk/sites/teacheng/files/styles/large/public/images/class_journals_iStock_000021675732XSmall.jpg?itok=eRUojT6a";
+            String headerImage = "http://www.discovercomo.com/userfiles/images/map_banner(3).jpg";
             String image = mapsBeen.get(i).getResource().getImage_url();
             String description = mapsBeen.get(i).getMetadata().getDescription();
             String entityId = mapsBeen.get(i).getResource().getEntity_id();

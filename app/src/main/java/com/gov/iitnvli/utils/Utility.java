@@ -41,12 +41,8 @@ public class Utility {
             if (key.equalsIgnoreCase(allKeys[i])){
                 finalKey = allValues[i];
                 break;
-            }else{
-                finalKey = allValues[i];
-                break;
             }
         }
-        Log.e("--- Final key ---" , finalKey);
         return finalKey;
     }
 }
