@@ -10,6 +10,15 @@ public class SearchListModel {
     public String title;
     public String description;
     public int imageRes;
+    public String entity_id;
+
+    public String getEntity_id() {
+        return entity_id;
+    }
+
+    public void setEntity_id(String entity_id) {
+        this.entity_id = entity_id;
+    }
 
     public int getImageRes() {
         return imageRes;

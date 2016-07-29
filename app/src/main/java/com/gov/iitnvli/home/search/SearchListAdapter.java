@@ -9,8 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gov.iitnvli.R;
+import com.gov.iitnvli.datamodel.DetailsDataModel;
+import com.gov.iitnvli.datamodel.ListItemModel;
 import com.gov.iitnvli.datamodel.SearchListModel;
+import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.home.LandingActivity;
+import com.gov.iitnvli.httpcommunication.httpmanager.HttpRequestManager;
+import com.gov.iitnvli.httpcommunication.httpmanager.RequestType;
+import com.gov.iitnvli.httpcommunication.httpmanager.ResponseHandler;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,18 +25,19 @@ import java.util.TreeSet;
 /**
  * Created by Murtuza on 7/19/16.
  */
-public class SearchListAdapter extends RecyclerView.Adapter {
+public class SearchListAdapter extends RecyclerView.Adapter implements ResponseHandler{
 
     private static final int TYPE_ROW = 0;
     private static final int TYPE_HEADER = 1;
 
     private ArrayList<SearchListModel> itemList = new ArrayList<>();
     private TreeSet<Integer> sectionHeader = new TreeSet<Integer>();
-
+    private HttpRequestManager httpRequestManager;
     private LandingActivity activity;
 
     public SearchListAdapter(LandingActivity activity) {
         this.activity = activity;
+        httpRequestManager = new HttpRequestManager(activity, this);
     }
 
     public void addItem(SearchListModel item) {
@@ -92,7 +99,7 @@ public class SearchListAdapter extends RecyclerView.Adapter {
             } else {
                 Picasso.with(activity).load(searchListModel.getImageUrl()).into(((RowListItemHolder) holder).listIcon);
             }
-
+            ((RowListItemHolder) holder).particularItem = searchListModel;
         }
     }
 
@@ -115,12 +122,38 @@ public class SearchListAdapter extends RecyclerView.Adapter {
         public ImageView listIcon;
         public TextView title;
         public TextView description;
+        public SearchListModel particularItem;
 
         public RowListItemHolder(View itemView) {
             super(itemView);
             listIcon = (ImageView) itemView.findViewById(R.id.listIcon);
             title = (TextView) itemView.findViewById(R.id.title);
             description = (TextView) itemView.findViewById(R.id.description);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callDetailWS(particularItem.getEntity_id());
+                }
+            });
         }
+    }
+
+    private void callDetailWS(String entityID) {
+        httpRequestManager.getDetails(entityID);
+    }
+
+    @Override
+    public void onSuccessResponse(Object responseObject, String responseType) {
+        if (responseObject == null){
+            return;
+        }
+
+        if (responseType.equals(RequestType.GET_DETAILS)){
+            openGeneralDetail((DetailsDataModel) responseObject);
+        }
+    }
+
+    private void openGeneralDetail(DetailsDataModel detailsDataModel) {
+        activity.navigateTo(ActivityConstant.GENERAL_DETAIL_FRAGMENT,detailsDataModel, true, null);
     }
 }

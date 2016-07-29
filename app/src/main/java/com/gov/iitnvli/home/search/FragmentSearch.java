@@ -185,6 +185,8 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
             searchListModel.setDescription(resultBean.getMetadata().getDescription());
         }
 
+        searchListModel.setEntity_id(resultBean.getResource().getEntity_id());
+
         return searchListModel;
     }
 
