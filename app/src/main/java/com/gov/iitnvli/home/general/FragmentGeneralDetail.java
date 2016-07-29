@@ -80,7 +80,7 @@ public class FragmentGeneralDetail extends Fragment {
             Picasso.with(activity).load(resourceBean.getImage_url()).into(image);
         }
 
-        if (!metadataBean.getPublisher().isEmpty()) {
+        if ((metadataBean.getPublisher() != null) && (!metadataBean.getPublisher().isEmpty())) {
             publisher.setText("Published By - " + metadataBean.getPublisher().get(0));
         } else {
             publisher.setVisibility(View.GONE);

@@ -56,19 +56,23 @@ public class HttpRequestManager implements Response.ErrorListener {
         progressdialog.setIndeterminate(true);
     }
 
-   public void getDashboardList(String offset, String limit) {
-       requestType = RequestType.GET_DASHBOARD_LIST;
-       String urlRequest = HttpConstants.getDashBoardList;
-       urlRequest += "_format=" + AppConstants.FORMAT;
-       urlRequest += "&offset=" + offset;
-       urlRequest += "&limit=" + limit;
-       makeJsonRequest(urlRequest, null, Request.Method.GET);
-   }
+    public void getDashboardList(String offset, String limit) {
+        requestType = RequestType.GET_DASHBOARD_LIST;
+        String urlRequest = HttpConstants.getDashBoardList;
+        urlRequest += "_format=" + AppConstants.FORMAT;
+        urlRequest += "&offset=" + offset;
+        urlRequest += "&limit=" + limit;
+        makeJsonRequest(urlRequest, null, Request.Method.GET);
+    }
 
     public void getDetails(String entityId) {
         requestType = RequestType.GET_DETAILS;
         String urlRequest = HttpConstants.getDetails;
-        urlRequest += entityId + "?";
+        if (AppConstants.isDevMode) {
+            urlRequest += "18600" + "?";
+        } else {
+            urlRequest += entityId + "?";
+        }
         urlRequest += "_format=" + AppConstants.FORMAT;
         makeJsonRequest(urlRequest, null, Request.Method.GET);
     }
@@ -83,7 +87,7 @@ public class HttpRequestManager implements Response.ErrorListener {
         makeJsonRequest(urlRequest, null, Request.Method.GET);
     }
 
-    private void makeJsonRequest(String url, HashMap<String, String> params, int    methodType) {
+    private void makeJsonRequest(String url, HashMap<String, String> params, int methodType) {
         Log.e("Request: ", url);
 
         if (!isInternetAvailable()) {

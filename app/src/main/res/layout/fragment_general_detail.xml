@@ -1,12 +1,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/musem">
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,9 +20,10 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/headerLayout"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:background="@color/musem">
+                android:background="@color/colorPrimary">
 
                 <ImageView
                     android:id="@+id/backBtn"
@@ -36,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-                    android:text="@string/museum"
+                    android:text="@string/books"
                     android:textColor="@color/white"
                     android:textSize="@dimen/headerLevelFont" />
 
@@ -77,20 +80,24 @@
                 android:textColor="@color/titleColor"
                 android:textSize="@dimen/firstLevelFont" />
 
-            <TextView
-                android:id="@+id/bookEdition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5th Edition"
-                android:textAlignment="center"
-                android:textColor="@color/titleColor"
-                android:textSize="@dimen/firstLevelFont" />
 
             <TextView
                 android:id="@+id/bookYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2010"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/firstLevelFont" />
+
+            <TextView
+                android:id="@+id/publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Published By - "
                 android:textAlignment="center"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/firstLevelFont" />
