@@ -184,11 +184,11 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
             switch (position % pageCount) {
                 case 0:
                     FragmentBooks fragmentBooks = new FragmentBooks();
-                    fragmentBooks.setBooksData(dashboardDataModel.getResult().getBook());
+                    fragmentBooks.setBooksData(dashboardDataModel.getResult().getBooks());
                     return fragmentBooks;
                 case 1:
                     FragmentThesis fragmentThesis = new FragmentThesis();
-                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getArticle());
+                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getJournal_and_thesis());
                     return fragmentThesis;
                 case 2:
                     return new FragmentMuseum();

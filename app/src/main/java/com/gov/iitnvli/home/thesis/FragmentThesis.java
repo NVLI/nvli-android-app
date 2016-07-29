@@ -30,14 +30,14 @@ public class FragmentThesis extends Fragment {
     private View parentView;
     private LinearLayoutManager layoutManager;
     private LandingActivity activity;
-    private List<DashboardDataModel.ResultBean.ArticleBean> thesisData;
+    private List<DashboardDataModel.ResultBean.JournalAndThesisBean> thesisData;
 
     public FragmentThesis() {
         // Required empty public constructor
     }
 
 
-    public void setThesisData(List<DashboardDataModel.ResultBean.ArticleBean> thesisData){
+    public void setThesisData(List<DashboardDataModel.ResultBean.JournalAndThesisBean> thesisData){
         this.thesisData = thesisData;
     }
 

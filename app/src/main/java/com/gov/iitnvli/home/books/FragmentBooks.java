@@ -30,13 +30,13 @@ public class FragmentBooks extends Fragment {
     private View parentView;
     private LinearLayoutManager layoutManager;
     private LandingActivity activity;
-    private List<DashboardDataModel.ResultBean.BookBean> booksData;
+    private List<DashboardDataModel.ResultBean.BooksBean> booksData;
 
     public FragmentBooks() {
         // Required empty public constructor
     }
 
-    public void setBooksData(List<DashboardDataModel.ResultBean.BookBean> booksData) {
+    public void setBooksData(List<DashboardDataModel.ResultBean.BooksBean> booksData) {
         this.booksData = booksData;
     }
 
