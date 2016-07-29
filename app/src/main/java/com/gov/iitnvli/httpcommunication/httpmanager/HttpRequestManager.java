@@ -68,11 +68,7 @@ public class HttpRequestManager implements Response.ErrorListener {
     public void getDetails(String entityId) {
         requestType = RequestType.GET_DETAILS;
         String urlRequest = HttpConstants.getDetails;
-        if (AppConstants.isDevMode) {
-            urlRequest += "18600" + "?";
-        } else {
-            urlRequest += entityId + "?";
-        }
+        urlRequest += entityId + "?";
         urlRequest += "_format=" + AppConstants.FORMAT;
         makeJsonRequest(urlRequest, null, Request.Method.GET);
     }
