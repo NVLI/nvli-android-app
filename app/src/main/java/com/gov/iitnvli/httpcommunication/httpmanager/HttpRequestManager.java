@@ -73,13 +73,12 @@ public class HttpRequestManager implements Response.ErrorListener {
         makeJsonRequest(urlRequest, null, Request.Method.GET);
     }
 
-    public void getSearchResult(String searchStr,String type, String offset, String limit) {
+    public void getSearchResult(String searchStr, String offset, String limit) {
         requestType = RequestType.GET_SEARCH_RESULT;
         String urlRequest = HttpConstants.getSearchResult;
         urlRequest += "_format=" + AppConstants.FORMAT;
         urlRequest += "&offset=" + offset;
         urlRequest += "&limit=" + limit;
-        urlRequest += "&type=" + type;
         urlRequest += "&keyword=" + searchStr;
         makeJsonRequest(urlRequest, null, Request.Method.GET);
     }

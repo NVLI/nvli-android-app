@@ -1,14 +1,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.books.FragmentBookDetail">
+    android:layout_height="match_parent">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:background="@color/musem"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/musem">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,8 +47,7 @@
                 android:layout_width="80dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"
-                android:scaleType="fitXY"
-                 />
+                android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/bookTitle"
@@ -102,11 +99,11 @@
                 android:id="@+id/bookDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginBottom="30dp"
-                android:lineSpacingExtra="5dp"
                 android:layout_marginTop="20dp"
+                android:lineSpacingExtra="5dp"
                 android:text="Introduction and mathematical concepts -- Kinematics in one dimension -- Kinematics in two dimensions -- Forces and Newton's Laws of Motion -- Dynamics of uniform circular motion -- Work and energy -- Impulse and momentum -- Rotational kinematics -- Rotational dynamics -- Simple harmonic motion and elasticity -- Fluids -- Temperature and heat -- Transfer of heat -- Ideal gas law and kinetic theory -- Thermodynamics -- Waves and sound -- Principle of linear superposition and interference phenomena -- Electric forces and electric fields -- Electric pootential energy and the electric potential -- Electric circuits -- Magnetic forces and magnetic fields -- Electromagentic induction -- Alternating current circuits -- Electromagentic waves -- Reflection of light: mirrors -- Refraction of light: lenses and optical instruments -- Interference andt he wave nature of light -- Special relativity -- Particles and waves -- Nature of the atom -- Nuclear physics and radioactivity -- Ionizing radiation, nuclear energy, and elementary particles."
                 android:textColor="@color/titleColor"
                 android:textSize="@dimen/firstLevelFont" />

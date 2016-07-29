@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,21 +15,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.datamodel.DashboardDataModel;
 import com.gov.iitnvli.datamodel.DetailsDataModel;
-import com.gov.iitnvli.datamodel.ListItemModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.global.AppConstants;
 import com.gov.iitnvli.home.books.FragmentBookDetail;
 import com.gov.iitnvli.home.books.FragmentBooks;
-import com.gov.iitnvli.home.musem.FragmentMuseum;
+import com.gov.iitnvli.home.general.FragmentGeneral;
+import com.gov.iitnvli.home.general.FragmentGeneralDetail;
 import com.gov.iitnvli.home.search.FragmentSearch;
 import com.gov.iitnvli.home.thesis.FragmentThesis;
 import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
@@ -65,8 +62,8 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
             setSupportActionBar(toolbar);
         }
         hideHomeButton();
-        httpRequestManager = new HttpRequestManager(this,this);
-        httpRequestManager.getDashboardList("0","5");
+        httpRequestManager = new HttpRequestManager(this, this);
+        httpRequestManager.getDashboardList("0", "5");
     }
 
     private void hideHomeButton() {
@@ -131,14 +128,14 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                         "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg");
             case 3:
                 headerLogo.setImageResource(R.drawable.archieve);
-                return HeaderDesign.fromColorResAndUrl(
+                return HeaderDesign.fromColorResAndDrawable(
                         R.color.archieve,
-                        "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                        getResources().getDrawable(R.drawable.books_banner));
             case 4:
                 headerLogo.setImageResource(R.drawable.audiovideo);
-                return HeaderDesign.fromColorResAndUrl(
+                return HeaderDesign.fromColorResAndDrawable(
                         R.color.audioVideo,
-                        "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                        getResources().getDrawable(R.drawable.thesis_banner));
             case 5:
                 headerLogo.setImageResource(R.drawable.manuscript);
                 return HeaderDesign.fromColorResAndUrl(
@@ -153,7 +150,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 headerLogo.setImageResource(R.drawable.map);
                 return HeaderDesign.fromColorResAndUrl(
                         R.color.map,
-                        "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                        "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
         }
         //execute others actions if needed //
         return null;
@@ -161,11 +158,11 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
 
     @Override
     public void onSuccessResponse(Object responseObject, String responseType) {
-        if (responseObject == null){
+        if (responseObject == null) {
             return;
         }
 
-        if (responseType.equals(RequestType.GET_DASHBOARD_LIST)){
+        if (responseType.equals(RequestType.GET_DASHBOARD_LIST)) {
             setupMaterialViewPager((DashboardDataModel) responseObject);
         }
     }
@@ -183,27 +180,41 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         public Fragment getItem(int position) {
             switch (position % pageCount) {
                 case 0:
-                    FragmentBooks fragmentBooks = new FragmentBooks();
-                    fragmentBooks.setBooksData(dashboardDataModel.getResult().getBooks());
-                    return fragmentBooks;
+                    FragmentGeneral fBooks = new FragmentGeneral();
+                    fBooks.setData(dashboardDataModel, ActivityConstant.BOOK_FRAGMENT);
+                    return fBooks;
                 case 1:
-                    FragmentThesis fragmentThesis = new FragmentThesis();
-                    fragmentThesis.setThesisData(dashboardDataModel.getResult().getJournal_and_thesis());
-                    return fragmentThesis;
+                    FragmentGeneral fThesis = new FragmentGeneral();
+                    fThesis.setData(dashboardDataModel, ActivityConstant.THESIS_FRAGMENT);
+                    return fThesis;
                 case 2:
-                    return new FragmentMuseum();
+                    FragmentGeneral fMuseum = new FragmentGeneral();
+                    fMuseum.setData(dashboardDataModel, ActivityConstant.MUSEM_FRAGMENT);
+                    return fMuseum;
                 case 3:
-                    return new FragmentMuseum();
+                    FragmentGeneral fArchieves = new FragmentGeneral();
+                    fArchieves.setData(dashboardDataModel, ActivityConstant.ARCHIEVES_FRAGMENT);
+                    return fArchieves;
                 case 4:
-                    return new FragmentMuseum();
+                    FragmentGeneral fVideo = new FragmentGeneral();
+                    fVideo.setData(dashboardDataModel, ActivityConstant.VIDEO_FRAGMENT);
+                    return fVideo;
                 case 5:
-                    return new FragmentMuseum();
+                    FragmentGeneral fManuscripts = new FragmentGeneral();
+                    fManuscripts.setData(dashboardDataModel, ActivityConstant.MANUSCRIPT_FRAGMENT);
+                    return fManuscripts;
                 case 6:
-                    return new FragmentMuseum();
+                    FragmentGeneral fNewspaper = new FragmentGeneral();
+                    fNewspaper.setData(dashboardDataModel, ActivityConstant.NEWSPAPER_FRAGMENT);
+                    return fNewspaper;
                 case 7:
-                    return new FragmentMuseum();
+                    FragmentGeneral fMaps = new FragmentGeneral();
+                    fMaps.setData(dashboardDataModel, ActivityConstant.MAPS_FRAGMENT);
+                    return fMaps;
                 default:
-                    return new FragmentMuseum();
+                    FragmentGeneral fragmentGeneral = new FragmentGeneral();
+                    fragmentGeneral.setData(dashboardDataModel, ActivityConstant.BOOK_FRAGMENT);
+                    return fragmentGeneral;
             }
         }
 
@@ -254,6 +265,12 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
             case ActivityConstant.SEARCH_FRAGMENT: {
                 FragmentSearch fragmentSearch = new FragmentSearch();
                 changeFragment(fragmentSearch, state);
+            }
+            break;
+            case ActivityConstant.GENERAL_DETAIL_FRAGMENT: {
+                FragmentGeneralDetail fragmentGeneralDetail = new FragmentGeneralDetail();
+                fragmentGeneralDetail.setDetailData((DetailsDataModel) obj);
+                changeFragment(fragmentGeneralDetail, state);
             }
             break;
             default:

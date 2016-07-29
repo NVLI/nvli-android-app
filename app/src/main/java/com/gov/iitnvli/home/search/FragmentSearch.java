@@ -98,8 +98,7 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
             if (!searchStr.isEmpty()) {
                 groupMap.clear();
                 searchListAdapter.clearData();
-                String[] tabsArry = getResources().getStringArray(R.array.tabArry);
-                httpRequestManager.getSearchResult(searchStr, tabsArry[AppConstants.currentTabIdx], "0", "5");
+                httpRequestManager.getSearchResult(searchStr, "0", "5");
             }
             return true;
         }
@@ -115,7 +114,7 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
         if (responseType.equals(RequestType.GET_SEARCH_RESULT)) {
 
             groupDataAsPerType((SearchDataModel) responseObject);
-            String[] typeKeys = activity.getResources().getStringArray(R.array.tabArry);
+            String[] typeKeys = activity.getResources().getStringArray(R.array.tabLabel);
 
             //This is for the current tab data//
             if (groupMap.containsKey(typeKeys[AppConstants.currentTabIdx])){
@@ -149,7 +148,12 @@ public class FragmentSearch extends Fragment implements TextView.OnEditorActionL
 
             String key = "Others";
             if (resourceBean.getType() != null && !resourceBean.getType().isEmpty()) {
-                key = resourceBean.getType();
+                String finalKey = Utility.checkAndGetKey(resourceBean.getType(), activity);
+                if (finalKey.isEmpty()){
+                    key = "Others";
+                }else{
+                    key = finalKey;
+                }
             }
             if (!groupMap.containsKey(key)) {
                 groupMap.put(key, new ArrayList<SearchListModel>());

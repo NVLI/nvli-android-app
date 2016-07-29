@@ -129,6 +129,13 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter implements Res
         else  if (fragType == ActivityConstant.THESISK_DETAIL_FRAGMENT){
             openThesisDetail(detailsDataModel);
         }
+        else  if (fragType == ActivityConstant.GENERAL_DETAIL_FRAGMENT){
+            openGeneralDetail(detailsDataModel);
+        }
+    }
+
+    private void openGeneralDetail(DetailsDataModel detailsDataModel) {
+        activity.navigateTo(ActivityConstant.GENERAL_DETAIL_FRAGMENT,detailsDataModel, true, null);
     }
 
     private void callDetailWS(String entityID) {

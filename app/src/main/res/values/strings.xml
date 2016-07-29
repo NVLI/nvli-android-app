@@ -19,14 +19,14 @@
     <!--These 2 array shoulld have the key and names in same sequence-->
     <!--Important - Tab array keys should be same as the key coming from response-->
     <string-array name="tabArry">
-        <item>Book</item>
-        <item>Article</item>
-        <item>Museum</item>
-        <item>Archives</item>
-        <item>Video</item>
-        <item>Manuscripts</item>
-        <item>Newspaper</item>
-        <item>Maps</item>
+        <item>books</item>
+        <item>journal_and_thesis</item>
+        <item>museum</item>
+        <item>govt_archives</item>
+        <item>audio_video</item>
+        <item>manuscripts</item>
+        <item>newspaper_archives</item>
+        <item>maps</item>
     </string-array>
 
     <string-array name="tabLabel">

@@ -1,5 +1,7 @@
 package com.gov.iitnvli.utils;
 
+import android.util.Log;
+
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.home.LandingActivity;
 
@@ -29,5 +31,22 @@ public class Utility {
         } else {
             return R.drawable.other_square;
         }
+    }
+
+    public static String checkAndGetKey(String key, LandingActivity activity) {
+        String[] allKeys = activity.getResources().getStringArray(R.array.tabArry);
+        String[] allValues = activity.getResources().getStringArray(R.array.tabLabel);
+        String finalKey ="";
+        for (int i= 0; i< allKeys.length; i++){
+            if (key.equalsIgnoreCase(allKeys[i])){
+                finalKey = allValues[i];
+                break;
+            }else{
+                finalKey = allValues[i];
+                break;
+            }
+        }
+        Log.e("--- Final key ---" , finalKey);
+        return finalKey;
     }
 }
