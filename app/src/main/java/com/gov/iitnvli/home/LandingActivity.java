@@ -127,25 +127,25 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                         R.color.musem,
                         "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg");
             case 3:
-                headerLogo.setImageResource(R.drawable.archieve);
-                return HeaderDesign.fromColorResAndDrawable(
-                        R.color.archieve,
-                        getResources().getDrawable(R.drawable.books_banner));
-            case 4:
                 headerLogo.setImageResource(R.drawable.audiovideo);
                 return HeaderDesign.fromColorResAndDrawable(
                         R.color.audioVideo,
                         getResources().getDrawable(R.drawable.thesis_banner));
-            case 5:
-                headerLogo.setImageResource(R.drawable.manuscript);
-                return HeaderDesign.fromColorResAndUrl(
-                        R.color.manuscript,
-                        "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
-            case 6:
+            case 4:
                 headerLogo.setImageResource(R.drawable.newspaper);
                 return HeaderDesign.fromColorResAndUrl(
                         R.color.newspaper,
                         "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg");
+            case 5:
+                headerLogo.setImageResource(R.drawable.archieve);
+                return HeaderDesign.fromColorResAndDrawable(
+                        R.color.archieve,
+                        getResources().getDrawable(R.drawable.books_banner));
+            case 6:
+                headerLogo.setImageResource(R.drawable.manuscript);
+                return HeaderDesign.fromColorResAndUrl(
+                        R.color.manuscript,
+                        "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
             case 7:
                 headerLogo.setImageResource(R.drawable.map);
                 return HeaderDesign.fromColorResAndUrl(

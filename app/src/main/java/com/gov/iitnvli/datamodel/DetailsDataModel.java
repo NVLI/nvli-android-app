@@ -46,7 +46,6 @@ public class DetailsDataModel extends ResponseState {
             private String rating;
             private String source;
             private String type;
-            private String tags;
             private String short_url;
             private String image_url;
 
@@ -96,14 +95,6 @@ public class DetailsDataModel extends ResponseState {
 
             public void setType(String type) {
                 this.type = type;
-            }
-
-            public String getTags() {
-                return tags;
-            }
-
-            public void setTags(String tags) {
-                this.tags = tags;
             }
 
             public String getShort_url() {
