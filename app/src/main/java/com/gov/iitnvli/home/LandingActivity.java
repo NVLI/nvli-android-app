@@ -43,7 +43,7 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
     private MaterialViewPager mViewPager;
     private Toolbar toolbar;
     private ImageView headerLogo;
-    private int pageCount = 8;
+    private int pageCount = 5;
     private HttpRequestManager httpRequestManager;
 //    private ListView drawerList;
 //    String[] testValues = new String[]{"Home", "News", "Settings", "Logout"};
@@ -192,21 +192,21 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                     fMuseum.setData(dashboardDataModel, ActivityConstant.MUSEM_FRAGMENT);
                     return fMuseum;
                 case 3:
-                    FragmentGeneral fArchieves = new FragmentGeneral();
-                    fArchieves.setData(dashboardDataModel, ActivityConstant.ARCHIEVES_FRAGMENT);
-                    return fArchieves;
-                case 4:
                     FragmentGeneral fVideo = new FragmentGeneral();
                     fVideo.setData(dashboardDataModel, ActivityConstant.VIDEO_FRAGMENT);
                     return fVideo;
-                case 5:
-                    FragmentGeneral fManuscripts = new FragmentGeneral();
-                    fManuscripts.setData(dashboardDataModel, ActivityConstant.MANUSCRIPT_FRAGMENT);
-                    return fManuscripts;
-                case 6:
+                case 4:
                     FragmentGeneral fNewspaper = new FragmentGeneral();
                     fNewspaper.setData(dashboardDataModel, ActivityConstant.NEWSPAPER_FRAGMENT);
                     return fNewspaper;
+                case 5:
+                    FragmentGeneral fArchieves = new FragmentGeneral();
+                    fArchieves.setData(dashboardDataModel, ActivityConstant.ARCHIEVES_FRAGMENT);
+                    return fArchieves;
+                case 6:
+                    FragmentGeneral fManuscripts = new FragmentGeneral();
+                    fManuscripts.setData(dashboardDataModel, ActivityConstant.MANUSCRIPT_FRAGMENT);
+                    return fManuscripts;
                 case 7:
                     FragmentGeneral fMaps = new FragmentGeneral();
                     fMaps.setData(dashboardDataModel, ActivityConstant.MAPS_FRAGMENT);
@@ -233,13 +233,13 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
                 case 2:
                     return getString(R.string.museum);
                 case 3:
-                    return getString(R.string.archieves);
-                case 4:
                     return getString(R.string.audiovideo);
-                case 5:
-                    return getString(R.string.manuscripts);
-                case 6:
+                case 4:
                     return getString(R.string.newspaper);
+                case 5:
+                    return getString(R.string.archieves);
+                case 6:
+                    return getString(R.string.manuscripts);
                 case 7:
                     return getString(R.string.maps);
             }

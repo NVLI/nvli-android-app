@@ -91,6 +91,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getBooksData(List<DashboardDataModel.ResultBean.BooksBean> booksBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (booksBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < booksBeen.size(); i++) {
             String title = booksBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = booksBeen.get(i).getResource().getNode_title();
@@ -105,6 +108,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getThesisData(List<DashboardDataModel.ResultBean.JournalAndThesisBean> thesisBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (thesisBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < thesisBeen.size(); i++) {
             String title = thesisBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = thesisBeen.get(i).getResource().getNode_title();
@@ -119,6 +125,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getMuseumData(List<DashboardDataModel.ResultBean.MuseumBean> museumBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (museumBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < museumBeen.size(); i++) {
             String title = museumBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = museumBeen.get(i).getResource().getNode_title();
@@ -133,6 +142,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getArchievesData(List<DashboardDataModel.ResultBean.GovtArchivesBean> govtArchivesBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (govtArchivesBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < govtArchivesBeen.size(); i++) {
             String title = govtArchivesBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = govtArchivesBeen.get(i).getResource().getNode_title();
@@ -147,6 +159,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getVideoData(List<DashboardDataModel.ResultBean.AudioVideoBean> audioVideoBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (audioVideoBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < audioVideoBeen.size(); i++) {
             String title = audioVideoBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = audioVideoBeen.get(i).getResource().getNode_title();
@@ -161,6 +176,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getManuscriptData(List<DashboardDataModel.ResultBean.ManuscriptsBean> manuscriptsBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (manuscriptsBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < manuscriptsBeen.size(); i++) {
             String title = manuscriptsBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = manuscriptsBeen.get(i).getResource().getNode_title();
@@ -176,6 +194,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getNewspaperData(List<DashboardDataModel.ResultBean.NewspaperArchivesBean> newspaperArchivesBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (newspaperArchivesBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < newspaperArchivesBeen.size(); i++) {
             String title = newspaperArchivesBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = newspaperArchivesBeen.get(i).getResource().getNode_title();
@@ -191,6 +212,9 @@ public class FragmentGeneral extends Fragment {
 
     private ArrayList<ListItemModel> getMapsData(List<DashboardDataModel.ResultBean.MapsBean> mapsBeen) {
         ArrayList<ListItemModel> listItem = new ArrayList<>();
+        if (mapsBeen.isEmpty()){
+            return listItem;
+        }
         for (int i = 0; i < mapsBeen.size(); i++) {
             String title = mapsBeen.get(i).getMetadata().getTitle_full();
             String nodeTitle = mapsBeen.get(i).getResource().getNode_title();
