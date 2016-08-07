@@ -25,11 +25,9 @@ import com.gov.iitnvli.datamodel.DetailsDataModel;
 import com.gov.iitnvli.global.ActivityConstant;
 import com.gov.iitnvli.global.AppConstants;
 import com.gov.iitnvli.home.books.FragmentBookDetail;
-import com.gov.iitnvli.home.books.FragmentBooks;
 import com.gov.iitnvli.home.general.FragmentGeneral;
 import com.gov.iitnvli.home.general.FragmentGeneralDetail;
 import com.gov.iitnvli.home.search.FragmentSearch;
-import com.gov.iitnvli.home.thesis.FragmentThesis;
 import com.gov.iitnvli.home.thesis.FragmentThesisDetail;
 import com.gov.iitnvli.httpcommunication.httpmanager.HttpRequestManager;
 import com.gov.iitnvli.httpcommunication.httpmanager.RequestType;
@@ -163,7 +161,11 @@ public class LandingActivity extends AppCompatActivity implements MaterialViewPa
         }
 
         if (responseType.equals(RequestType.GET_DASHBOARD_LIST)) {
-            setupMaterialViewPager((DashboardDataModel) responseObject);
+            try {
+                setupMaterialViewPager((DashboardDataModel) responseObject);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

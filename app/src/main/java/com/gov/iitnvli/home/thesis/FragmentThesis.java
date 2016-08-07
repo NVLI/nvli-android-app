@@ -57,7 +57,7 @@ public class FragmentThesis extends Fragment {
         layoutManager = new LinearLayoutManager(activity);
         thesisList.setLayoutManager(layoutManager);
         thesisList.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        adapter = new ListRecyclerViewAdapter(getThesisData(), activity, ActivityConstant.THESISK_DETAIL_FRAGMENT);
+        adapter = new ListRecyclerViewAdapter(getThesisData(), activity, ActivityConstant.GENERAL_DETAIL_FRAGMENT);
         thesisList.setAdapter(adapter);
 
         return parentView;

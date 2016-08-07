@@ -56,7 +56,7 @@ public class FragmentBooks extends Fragment {
         layoutManager = new LinearLayoutManager(activity);
         booksList.setLayoutManager(layoutManager);
         booksList.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        adapter = new ListRecyclerViewAdapter(getBooksData(), activity, ActivityConstant.BOOK_DETAIL_FRAGMENT);
+        adapter = new ListRecyclerViewAdapter(getBooksData(), activity, ActivityConstant.GENERAL_DETAIL_FRAGMENT);
         booksList.setAdapter(adapter);
 
         return parentView;

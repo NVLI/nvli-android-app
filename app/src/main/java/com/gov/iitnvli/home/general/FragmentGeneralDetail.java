@@ -74,10 +74,12 @@ public class FragmentGeneralDetail extends Fragment {
             title.setText(metadataBean.getTitle_full());
         }
 
-        if (resourceBean.getImage_url().isEmpty()) {
-            Picasso.with(activity).load(imgUrl).into(image);
-        } else {
-            Picasso.with(activity).load(resourceBean.getImage_url()).into(image);
+        if (resourceBean.getImage_url() != null){
+            if (resourceBean.getImage_url().isEmpty()) {
+                Picasso.with(activity).load(imgUrl).into(image);
+            } else {
+                Picasso.with(activity).load(resourceBean.getImage_url()).into(image);
+            }
         }
 
         if ((metadataBean.getPublisher() != null) && (!metadataBean.getPublisher().isEmpty())) {
@@ -86,10 +88,12 @@ public class FragmentGeneralDetail extends Fragment {
             publisher.setVisibility(View.GONE);
         }
 
-        if (!metadataBean.getPublishDate().isEmpty()) {
-            year.setText(metadataBean.getPublishDate().get(0));
-        } else {
-            year.setVisibility(View.GONE);
+        if (metadataBean.getPublishDate() != null){
+            if (!metadataBean.getPublishDate().isEmpty()) {
+                year.setText(metadataBean.getPublishDate().get(0));
+            } else {
+                year.setVisibility(View.GONE);
+            }
         }
 
         if (metadataBean.getDescription() == null) {
@@ -98,10 +102,12 @@ public class FragmentGeneralDetail extends Fragment {
             description.setText(metadataBean.getDescription());
         }
 
-        if (!metadataBean.getAuthor().isEmpty()) {
-            author.setText(metadataBean.getAuthor().get(0));
-        } else {
-            author.setVisibility(View.GONE);
+        if (metadataBean.getAuthor() != null){
+            if (!metadataBean.getAuthor().isEmpty()) {
+                author.setText(metadataBean.getAuthor().get(0));
+            } else {
+                author.setVisibility(View.GONE);
+            }
         }
 
         return parentView;
