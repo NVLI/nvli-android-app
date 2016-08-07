@@ -4,7 +4,6 @@ import com.gov.iitnvli.R;
 import com.gov.iitnvli.home.LandingActivity;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
  * Created by Murtuza on 7/23/16.
@@ -48,10 +47,11 @@ public class Utility {
     }
 
     public static String getYear(String unixTimeStamp){
-        Calendar calendar = Calendar.getInstance();
-        Long timeInMillis = Long.valueOf(unixTimeStamp);
-        calendar.setTimeInMillis(timeInMillis);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
-        return formatter.format(calendar.getTime());
+        long timestamp = Long.parseLong(unixTimeStamp) * 1000;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        String date = sdf.format(timestamp);
+
+        return date.toString();
     }
 }
