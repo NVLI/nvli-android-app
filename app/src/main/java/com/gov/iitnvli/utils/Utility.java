@@ -49,7 +49,7 @@ public class Utility {
     public static String getYear(String unixTimeStamp){
         long timestamp = Long.parseLong(unixTimeStamp) * 1000;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String date = sdf.format(timestamp);
 
         return date.toString();
