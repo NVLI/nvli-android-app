@@ -1,9 +1,10 @@
 package com.gov.iitnvli.utils;
 
-import android.util.Log;
-
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.home.LandingActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Murtuza on 7/23/16.
@@ -44,5 +45,13 @@ public class Utility {
             }
         }
         return finalKey;
+    }
+
+    public static String getYear(String unixTimeStamp){
+        Calendar calendar = Calendar.getInstance();
+        Long timeInMillis = Long.valueOf(unixTimeStamp);
+        calendar.setTimeInMillis(timeInMillis);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
+        return formatter.format(calendar.getTime());
     }
 }

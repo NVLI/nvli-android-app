@@ -3,6 +3,7 @@ package com.gov.iitnvli.home.general;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.gov.iitnvli.R;
 import com.gov.iitnvli.datamodel.DetailsDataModel;
 import com.gov.iitnvli.home.LandingActivity;
+import com.gov.iitnvli.utils.Utility;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -90,7 +92,12 @@ public class FragmentGeneralDetail extends Fragment {
 
         if (metadataBean.getPublishDate() != null){
             if (!metadataBean.getPublishDate().isEmpty()) {
-                year.setText(metadataBean.getPublishDate().get(0));
+                if (metadataBean.getRecordtype().equals("newspaper")) {
+                    String formattedYear = Utility.getYear(metadataBean.getPublishDate().get(0));
+                    year.setText(formattedYear);
+                }else{
+                    year.setText(metadataBean.getPublishDate().get(0));
+                }
             } else {
                 year.setVisibility(View.GONE);
             }
